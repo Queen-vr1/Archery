@@ -82,3 +82,8 @@ Library
 Temp
 UserSettings
 Logs
+Fantasy Forest Environment Free Sample
+*.meta
+_TerrainAutoUpgrade
+TerrainSampleAssets
+Terrain
