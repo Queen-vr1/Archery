@@ -87,3 +87,7 @@ Fantasy Forest Environment Free Sample
 _TerrainAutoUpgrade
 TerrainSampleAssets
 Terrain
+course_project/ProjectSettings/GraphicsSettings.asset
+course_project/.vscode/settings.json
+course_project/.vscode/launch.json
+course_project/.vscode/extensions.json
