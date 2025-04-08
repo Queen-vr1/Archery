@@ -1898,6 +1898,64 @@ Transform:
   - {fileID: 818601148}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2140792642
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2140792644}
+  - component: {fileID: 2140792643}
+  m_Layer: 0
+  m_Name: VRInput
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2140792643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2140792642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74ed3f8b2cc5d5846974683ffc27fcb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftController: {fileID: 1557216529}
+  rightController: {fileID: 551774084}
+  rightPrimaryButton: {fileID: 0}
+  rightSecondaryButton: {fileID: 0}
+  rightGrip: {fileID: 0}
+  rightTrigger: {fileID: 0}
+  rightThumbstick: {fileID: 0}
+  rightThumbRestTouch: {fileID: 0}
+  leftPrimaryButton: {fileID: 0}
+  leftSecondaryButton: {fileID: 0}
+  leftGrip: {fileID: 0}
+  leftTrigger: {fileID: 0}
+  leftThumbstick: {fileID: 0}
+  leftMenuButton: {fileID: 0}
+--- !u!4 &2140792644
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2140792642}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &3861750539256679640
 Transform:
   m_ObjectHideFlags: 0
@@ -2071,3 +2129,4 @@ SceneRoots:
   - {fileID: 1565888764}
   - {fileID: 1714865112}
   - {fileID: 2064973019}
+  - {fileID: 2140792644}
