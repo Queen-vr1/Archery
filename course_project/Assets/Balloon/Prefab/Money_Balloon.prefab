@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 631336382576933250}
   - component: {fileID: 5870850043574666889}
   - component: {fileID: 8011789110988253425}
+  - component: {fileID: 3713882796646335034}
   m_Layer: 0
   m_Name: Money_Balloon
-  m_TagString: Untagged
+  m_TagString: Balloon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39,7 +40,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 172.031, z: 0}
 --- !u!95 &631336382576933250
 Animator:
-  serializedVersion: 7
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -53,7 +54,6 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -88,7 +88,6 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 90c1021248390b3e5b7647d0aefe81f6, type: 3}
-  m_Resource: {fileID: 8300000, guid: 90c1021248390b3e5b7647d0aefe81f6, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -174,6 +173,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3713882796646335034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6437042774827374851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b30c17fadd363c4e821e3e4ea345799, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2063663765595964832
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -343,7 +354,7 @@ PrefabInstance:
       value: 78.761
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 0cb8664e09fc5322d89e3af5b81f5436, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
+      propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e980409587009a4098c65d926530c707, type: 2}
     - target: {fileID: 919132149155446097, guid: 0cb8664e09fc5322d89e3af5b81f5436, type: 3}
@@ -440,7 +451,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7635826562936255635, guid: 569732df5026bcf05b56c7d488f47abc, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
+      propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 9258365c6b146e1f1852b193eec8e680, type: 2}
     - target: {fileID: 919132149155446097, guid: 569732df5026bcf05b56c7d488f47abc, type: 3}

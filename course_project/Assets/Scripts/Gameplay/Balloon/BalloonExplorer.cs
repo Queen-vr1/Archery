@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class BalloonExplorer : Balloon
 {
@@ -8,7 +8,8 @@ public class BalloonExplorer : Balloon
     
     [SerializeField] private int _verticalSpeed = 5;
     [SerializeField] private int _horizontalSpeed = 10;
-    [SerializeField] private int rewardAmount = 15;
+
+    [SerializeField] private int rewardAmount = 3;
 
     public override int verticalSpeed
     {
@@ -24,9 +25,18 @@ public class BalloonExplorer : Balloon
 
     public override int maxHeight => 30; // Altura máxima del globo explorador
     public override int minHeight => 4; // Altura mínima del globo explorador
+    
     public override void Init()
     {
         Debug.Log("Globo explorador listo!");
+        rewards = new List<RewardData>();
+
+        rewards.Add(new RewardData
+        {
+            category = RewardCategory.Points,
+            modifier = RewardModifier.Multiplier,
+            value = 1.2f
+        });
     }
 
     void Update()
@@ -51,11 +61,6 @@ public class BalloonExplorer : Balloon
         Vector3 horizontalMove = moveDirection * horizontalSpeed * Time.deltaTime;
         Vector3 verticalMove = Vector3.up * verticalSpeed * Time.deltaTime;
         transform.position += horizontalMove + verticalMove;
-    }
-
-    public override int GetReward()
-    {
-        return rewardAmount;
     }
 
     public override void TakeDamage(int amount)

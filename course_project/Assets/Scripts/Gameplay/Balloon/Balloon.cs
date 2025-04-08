@@ -22,6 +22,9 @@ public abstract class Balloon : MonoBehaviour
     // Vertical speed of the balloon.
     public abstract int verticalSpeed { get; set; }// Default speed, can be overridden by subclasses.
 
+    [SerializeField]
+    protected List<RewardData> rewards = new List<RewardData>();
+
     ////////////////////////////////////////////////////////////////////////////////////
     /// FUNCTIONS
     /////////////////////////////////////////////////////////////////////////////////////
@@ -32,7 +35,11 @@ public abstract class Balloon : MonoBehaviour
     // Defines how this balloon moves. Different types may float, dash, zigzag, etc.
     public abstract void Move();
 
-    public abstract int GetReward();
+    public virtual void GetRewards()
+    {
+        RewardManager.ApplyAll(rewards);
+    }
+
 
     // Reduces the balloon's health when damaged. Used for types like armored balloons.
     public abstract void TakeDamage(int amount);

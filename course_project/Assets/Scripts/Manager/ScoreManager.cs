@@ -4,6 +4,9 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance { get; private set; }
 
+    public int TotalPoints { get; private set; } = 0;
+    public float Multiplier { get; private set; } = 1f;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -15,18 +18,22 @@ public class ScoreManager : MonoBehaviour
         Instance = this;
     }
 
-    // Aplica multiplicador según el nivel actual
-    public void RewardForBalloon(Balloon balloon)
+    public void AddPoints(int basePoints)
     {
-        int baseValue = balloon.GetReward();
-        int level = GameManager.Instance.CurrentLevel;
-
-        int finalReward = baseValue * level;
-
-        // Añadir dinero al total
-        GameManager.Instance.Money += finalReward;
-
-        // Mostrar en consola o UI
-        Debug.Log($"+{finalReward} monedas por globo (base {baseValue}, nivel {level})");
+        int finalPoints = Mathf.RoundToInt(basePoints * Multiplier);
+        TotalPoints += finalPoints;
+        Debug.Log($"+{finalPoints} puntos (x{Multiplier})");
     }
+
+    public void SetMultiplier(float newMultiplier)
+    {
+        Multiplier = newMultiplier;
+    }
+
+    public void ResetScore()
+    {
+        TotalPoints = 0;
+        Multiplier = 1f;
+    }
+
 }
