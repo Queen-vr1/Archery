@@ -582,13 +582,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   balloonTypes:
-  - prefab: {fileID: 5534612148462883475, guid: 30a71a9bd3d475e4e888ec6b17c6c558, type: 3}
-    weight: 1
-  balloonCount: 10
-  balloonSize: {x: 1, y: 1, z: 1}
+  - prefab: {fileID: 5749882182593781771, guid: 5145f86300ba6bdcbacd41742c660566, type: 3}
+    weight: 0.3
+  - prefab: {fileID: 8179302595022777391, guid: 7f32a0fb3c26ce85db6d744c70521f6e, type: 3}
+    weight: 0.1
+  - prefab: {fileID: 6437042774827374851, guid: 50f4f8307e4c9430eae3770310dfd928, type: 3}
+    weight: 0.1
+  - prefab: {fileID: 1792860094880631786, guid: 4ab85900db7c9341b88eab08c1d10d0c, type: 3}
+    weight: 0.1
+  balloonCount: 20
+  balloonSize: {x: 0.52, y: 0.52, z: 1}
   minDistance: 3
-  minHeight: 1
-  maxHeight: 20
+  minHeight: 4
+  maxHeight: 30
 --- !u!4 &1770838816
 Transform:
   m_ObjectHideFlags: 0

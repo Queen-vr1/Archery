@@ -43,7 +43,8 @@ public class SpawmerBalloon : MonoBehaviour
             {   
                 Vector3 spawnPos = validBounds.Value.center;
                 GameObject prefab = GetRandomBalloonPrefab();
-                GameObject balloon = Instantiate(prefab, spawnPos, Quaternion.identity);
+                Quaternion randomYRotation = Quaternion.Euler(0, Random.Range(0f, 360f), 0);
+                GameObject balloon = Instantiate(prefab, spawnPos, randomYRotation);
                 balloon.transform.localScale = balloonSize;
                 placedBounds.Add(GetFullBounds(balloon));
             }
@@ -152,7 +153,25 @@ public class SpawmerBalloon : MonoBehaviour
 
     Bounds GetFullBounds(GameObject obj)
     {
-        Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
+        Renderer[] renderers;
+
+        if (obj.CompareTag("Aerostatic_Ballon"))
+        {
+            // Usa todos los Renderers normalmente
+            renderers = obj.GetComponentsInChildren<Renderer>();
+        }
+        else if (obj.CompareTag("Balloon"))
+        {
+            // Solo usa Renderers que también tengan el tag "Balloon"
+            renderers = obj.GetComponentsInChildren<Renderer>();
+            renderers = System.Array.FindAll(renderers, r => r.gameObject.CompareTag("Balloon"));
+        }
+        else
+        {
+            // Por defecto, usa todos los Renderers
+            renderers = obj.GetComponentsInChildren<Renderer>();
+        }
+
         if (renderers.Length == 0)
             return new Bounds(obj.transform.position, Vector3.zero);
 
@@ -161,8 +180,10 @@ public class SpawmerBalloon : MonoBehaviour
         {
             bounds.Encapsulate(renderers[i].bounds);
         }
+
         return bounds;
     }
+
 
     List<GameObject> ObtenerObjetosPorTags(List<string> tags)
     {

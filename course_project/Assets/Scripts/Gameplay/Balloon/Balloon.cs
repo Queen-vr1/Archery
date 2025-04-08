@@ -10,11 +10,29 @@ public abstract class Balloon : MonoBehaviour
     // The current level of this balloon. Affects its cost, effects, etc.
     public int Level { get; private set; } = 0;
 
+    // Maximum height the balloon can reach.
+    public abstract int maxHeight { get; } 
+
+    // Minimum height the balloon can reach.
+    public abstract int minHeight { get; } // Default to 0, can be overridden by subclasses.
+
+    // Horizontal speed of the balloon.
+    public abstract int horizontalSpeed { get; set; }// Default speed, can be overridden by subclasses.
+
+    // Vertical speed of the balloon.
+    public abstract int verticalSpeed { get; set; }// Default speed, can be overridden by subclasses.
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    /// FUNCTIONS
+    /////////////////////////////////////////////////////////////////////////////////////
+
     // Initializes the balloon (each subclass can initialize its own specific properties).
     public abstract void Init(); // cada tipo de globo puede hacer algo distinto
 
     // Defines how this balloon moves. Different types may float, dash, zigzag, etc.
     public abstract void Move();
+
+    public abstract int GetReward();
 
     // Reduces the balloon's health when damaged. Used for types like armored balloons.
     public abstract void TakeDamage(int amount);
