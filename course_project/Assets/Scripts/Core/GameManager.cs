@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     {
         CurrentState = newState;
         Debug.Log("Estado del juego: " + newState);
+        SceneController.Instance.LoadSceneForState(newState);
     }
 
     public void AddMoney(int amount)
