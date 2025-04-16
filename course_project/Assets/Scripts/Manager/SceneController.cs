@@ -38,7 +38,7 @@ public class SceneController : MonoBehaviour
                 return "Start";
 
             case GameState.Playing:
-                return $"Level_{GameManager.Instance.CurrentLevel}";
+                return $"Level_{GameManager.Instance.CurrentLevel}_pro";
 
             case GameState.GameOver:
                 return "GameOver";
