@@ -7,7 +7,7 @@ public enum BowState {
     notArrow, arrowBack, arrowAbove, arrowClose, arrowReady
 }
 
-public class Bow : MonoBehaviour
+public abstract class Bow : ObjectGameplay
 {
 
     public OVRInput.Button notDominant;

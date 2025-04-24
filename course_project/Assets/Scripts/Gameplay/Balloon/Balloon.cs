@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 
 // Abstract base class for all balloon types.
-public abstract class Balloon : MonoBehaviour
+public abstract class Balloon : ObjectGameplay
 {
     // Indicates whether this balloon type is unlocked by the player.
-    public bool IsUnlocked { get; private set; } = false;
+    // public bool IsUnlocked { get; private set; } = false;
 
     // The current level of this balloon. Affects its cost, effects, etc.
-    public int Level { get; private set; } = 0;
+    // public int Level { get; private set; } = 0;
 
     // Maximum height the balloon can reach.
     public abstract int maxHeight { get; } 
@@ -54,16 +54,16 @@ public abstract class Balloon : MonoBehaviour
     public abstract BalloonTypeName GetBalloonType();
 
     // Returns the cost to unlock this balloon type in the shop.
-    public abstract int GetUnlockCost();
+    // public abstract int GetUnlockCost();
 
     // Returns the cost to upgrade this balloon to the next level.
-    public abstract int GetUpgradeCost();
+    // public abstract int GetUpgradeCost();
 
     // Increases the level of the balloon. Can affect its effects, stats, and cost.
-    public virtual void Upgrade()
-    {
-        Level++;
-    }
+    // public virtual void Upgrade()
+    // {
+    //    Level++;
+    //}
 
     // This would define what happens when the balloon is collected or hit:
     // giving points, applying score multipliers, gold, or penalties.
