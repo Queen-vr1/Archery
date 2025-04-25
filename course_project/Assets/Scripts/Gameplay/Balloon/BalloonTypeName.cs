@@ -3,10 +3,8 @@ using UnityEngine;
 
 public enum BalloonTypeName
 {
-    Explorer,
+    Point,
     Armored,
-    Bomber,
-    Fast,
-    Stealth,
-    // Agrega más según necesites
+    Dead,
+    Money,
 }

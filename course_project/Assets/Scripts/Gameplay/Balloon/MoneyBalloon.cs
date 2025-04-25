@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class BalloonExplorer : Balloon
+public class MoneyBalloon : Balloon
 {
-    private int health = 10;
+    private int health = 1;
     private Vector3 moveDirection;
     
     [SerializeField] private int _verticalSpeed = 5;
@@ -28,7 +28,7 @@ public class BalloonExplorer : Balloon
     
     public override void Init()
     {
-        Debug.Log("Globo explorador listo!");
+        Debug.Log("Money Balloon ready!");
         rewards = new List<RewardData>();
 
         rewards.Add(new RewardData
@@ -41,7 +41,7 @@ public class BalloonExplorer : Balloon
 
     void Update()
     {
-        Move();
+        //Move();
     }
 
 
@@ -77,12 +77,14 @@ public class BalloonExplorer : Balloon
     }
     public override void OnDestroyed()
     {
-        Debug.Log("Globo explorador destruido!");
+        Animator anim;
+        anim = GetComponent<Animator>(); 
+        anim.SetBool("isShoot", true); 
     }
 
     public override BalloonTypeName GetBalloonType()
     {
-        return BalloonTypeName.Explorer;
+        return BalloonTypeName.Money;
     }
 
     public override int GetUnlockCost()

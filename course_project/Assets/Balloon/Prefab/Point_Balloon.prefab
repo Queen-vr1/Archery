@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6896187502643686634}
   - component: {fileID: 5875050293988870784}
   - component: {fileID: -2448176061025980709}
+  - component: {fileID: 4995896214174660491}
   m_Layer: 0
   m_Name: Point_Balloon
   m_TagString: Balloon
@@ -185,6 +186,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b30c17fadd363c4e821e3e4ea345799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4995896214174660491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1792860094880631786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ff879dd3d7c24d4a8f9bf75e43aafa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rewards: []
+  _verticalSpeed: 5
+  _horizontalSpeed: 10
+  rewardAmount: 3
 --- !u!1001 &1074119559890285852
 PrefabInstance:
   m_ObjectHideFlags: 0
