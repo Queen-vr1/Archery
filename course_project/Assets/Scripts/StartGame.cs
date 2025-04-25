@@ -28,7 +28,8 @@ public class StartGame : MonoBehaviour
             return;
         }
 
-        GameManager.Instance.SetState(GameState.Playing);
+        //GameManager.Instance.SetState(GameState.Playing);
+        GameManager.Instance.SetState(GameState.Shop);
     }
 
 }
