@@ -10,6 +10,7 @@ TagManager:
   - Aerostatic_Ballon
   - Bow
   - Arrow
+  - Info
   layers:
   - Default
   - TransparentFX
