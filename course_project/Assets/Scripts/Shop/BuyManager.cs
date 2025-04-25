@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.UI;
 
 public class BuyManager : MonoBehaviour
@@ -10,14 +9,13 @@ public class BuyManager : MonoBehaviour
 	public class Item
 	{
 		public GameObject itemPrefab;
-		public XRBaseInteractable interactable;
+		public Button buyButton;
 		public GameObject buyPanel;
 		public Button yesButton;
 		public Button noButton;
 	}
 
 	public List<Item> items = new List<Item>();
-
 	public PanelManager panelManager;
 
 	void Start()
@@ -25,8 +23,7 @@ public class BuyManager : MonoBehaviour
 		Debug.Log("Start");
 		foreach (var item in items)
 		{
-			item.interactable.selectEntered.AddListener((args) => OnItemSelected(item));
-
+			item.buyButton.onClick.AddListener(() => OnItemSelected(item));
 			item.yesButton.onClick.AddListener(() => OnYesButtonClicked(item));
 			item.noButton.onClick.AddListener(() => OnNoButtonClicked(item));
 
@@ -43,14 +40,15 @@ public class BuyManager : MonoBehaviour
 		}
 
 		item.buyPanel.SetActive(true);
-
-		// Pongo que se compre aqui por ahora 
-		ShopManager.Instance.Buy(item.itemPrefab.GetComponent<ShopItem>());
 	}
 
 	void OnYesButtonClicked(Item item)
 	{
 		Debug.Log("Holi");
+
+		// Pongo que se compre aqui por ahora 
+		ShopManager.Instance.Buy(item.itemPrefab.GetComponent<ShopItem>());
+
 		item.buyPanel.SetActive(false);
 	}
 
