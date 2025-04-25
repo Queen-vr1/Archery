@@ -1504,13 +1504,13 @@ MonoBehaviour:
   rightHandInteractor: {fileID: 724597221}
   interactionManager: {fileID: 1605158233}
   rightGripAction: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  arrow: {fileID: 9191608237542677334, guid: 0fd9d836fea21bc4190427b96fb364ed, type: 3}
+  arrow: {fileID: 100000, guid: cff4c024d20095a458a66e6e0d47bf1b, type: 3}
   attachArrowPoint: {fileID: 1029582463}
   spawnPoint: {fileID: 1380070708}
   maxHorizontalDistance: 0.2
   minPullDistance: 0.05
   maxPullDistance: 0.5
-  maxArrowSpeed: 20
+  maxArrowSpeed: 500
 --- !u!1 &724597213
 GameObject:
   m_ObjectHideFlags: 0
