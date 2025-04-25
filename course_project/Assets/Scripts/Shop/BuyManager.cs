@@ -9,6 +9,7 @@ public class BuyManager : MonoBehaviour
 	[System.Serializable]
 	public class Item
 	{
+		public GameObject itemPrefab;
 		public XRBaseInteractable interactable;
 		public GameObject buyPanel;
 		public Button yesButton;
@@ -42,6 +43,9 @@ public class BuyManager : MonoBehaviour
 		}
 
 		item.buyPanel.SetActive(true);
+
+		// Pongo que se compre aqui por ahora 
+		ShopManager.Instance.Buy(item.itemPrefab.GetComponent<ShopItem>());
 	}
 
 	void OnYesButtonClicked(Item item)
