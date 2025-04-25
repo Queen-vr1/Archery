@@ -56,6 +56,7 @@ public class FireArrowFromRightHandGrip : MonoBehaviour
 
                 float horizontalDistance = new Vector2(offset.x, offset.y).magnitude;
                 float pullDistance = Mathf.Clamp(-offset.z, 0f, maxPullDistance);
+                pullDistance = 0.3f; // Valor de prueba para pullDistance
 
                 Debug.Log($"Pull Z: {pullDistance}, Horizontal: {horizontalDistance}");
 
@@ -68,7 +69,10 @@ public class FireArrowFromRightHandGrip : MonoBehaviour
                     XRGrabInteractable grabInteractable = currentArrow.GetComponent<XRGrabInteractable>();
                     if (grabInteractable != null)
                     {
-                        interactionManager.SelectExit(rightHandInteractor, grabInteractable);
+                        if (grabInteractable.selectingInteractor == rightHandInteractor)
+                        {
+                            interactionManager.SelectExit(rightHandInteractor, grabInteractable);
+                        }
                     }
 
                     currentArrow.GetComponent<Rigidbody>().velocity = spawnPoint.forward * finalSpeed;
