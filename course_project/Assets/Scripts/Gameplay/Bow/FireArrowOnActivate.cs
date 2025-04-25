@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit; // arriba del todo
-
+using UnityEngine.XR;
 
 public class FireArrowFromRightHandGrip : MonoBehaviour
 {
@@ -11,13 +11,12 @@ public class FireArrowFromRightHandGrip : MonoBehaviour
     public InputActionReference rightGripAction;
     public GameObject arrow;
     public Transform attachArrowPoint;
-    public Transform leftHandTransform;
     public Transform spawnPoint;
 
-    public float maxHorizontalDistance = 0.3f;
+    public float maxHorizontalDistance = 0.2f;
     public float minPullDistance = 0.05f;
     public float maxPullDistance = 0.5f;
-    public float maxArrowSpeed = 15f;
+    public float maxArrowSpeed = 25f;
 
     private GameObject currentArrow;
     private bool wasGripping = false;
@@ -33,7 +32,6 @@ public class FireArrowFromRightHandGrip : MonoBehaviour
             if (currentArrow == null)
             {
                 currentArrow = Instantiate(arrow, attachArrowPoint.position, attachArrowPoint.rotation);
-                Debug.Log("Flecha creada en mano derecha.");
 
                 // FORZAR agarre con la mano derecha
                 XRGrabInteractable grabInteractable = currentArrow.GetComponent<XRGrabInteractable>();
@@ -51,28 +49,32 @@ public class FireArrowFromRightHandGrip : MonoBehaviour
             Debug.Log("Soltado el grip");
             if (currentArrow != null)
             {
-                Vector3 offset = transform.position - leftHandTransform.position;
-                Debug.Log($"Offset: {offset}");
+                Vector3 leftHandPos = InputTracking.GetLocalPosition(XRNode.LeftHand);
+                Vector3 rightHandPos = InputTracking.GetLocalPosition(XRNode.RightHand);
 
-                float horizontalDistance = new Vector2(offset.x, offset.y).magnitude;
-                float pullDistance = Mathf.Clamp(-offset.z, 0f, maxPullDistance);
-                pullDistance = 0.3f; // Valor de prueba para pullDistance
 
-                Debug.Log($"Pull Z: {pullDistance}, Horizontal: {horizontalDistance}");
+                Debug.Log($"[XRNode] Posición mano izquierda: {leftHandPos.x}, {leftHandPos.y}, {leftHandPos.z}");
+                Debug.Log($"[XRNode] Posición mano derecha: {rightHandPos.x}, {rightHandPos.y}, {rightHandPos.z}");
+                
+                float horizontalDiff = Mathf.Abs(rightHandPos.x - leftHandPos.x);
+                float tensionZ = leftHandPos.z - rightHandPos.z;
+                float pullDistance = Mathf.Clamp(tensionZ, 0f, maxPullDistance);  // solo si tiras hacia adelante
 
-                if (horizontalDistance <= maxHorizontalDistance && pullDistance >= minPullDistance)
+                // pullDistance = 0.3f; // Valor de prueba para pullDistance
+
+                Debug.Log($"Distancia horizontal: {horizontalDiff}, Tensión : {tensionZ}, PullDistance: {pullDistance}");
+
+                if (horizontalDiff  <= maxHorizontalDistance && pullDistance >= minPullDistance)
                 {
-                    float speedFactor = pullDistance / maxPullDistance;
+                    //float speedFactor = pullDistance / maxPullDistance;
+                    float speedFactor = Mathf.Pow(tensionZ / maxPullDistance, 2f);
                     float finalSpeed = speedFactor * maxArrowSpeed;
 
                     currentArrow.transform.parent = null;
                     XRGrabInteractable grabInteractable = currentArrow.GetComponent<XRGrabInteractable>();
-                    if (grabInteractable != null)
+                    if (grabInteractable != null && grabInteractable.selectingInteractor == rightHandInteractor)
                     {
-                        if (grabInteractable.selectingInteractor == rightHandInteractor)
-                        {
-                            interactionManager.SelectExit(rightHandInteractor, grabInteractable);
-                        }
+                        interactionManager.SelectExit(rightHandInteractor, grabInteractable);
                     }
 
                     currentArrow.GetComponent<Rigidbody>().velocity = spawnPoint.forward * finalSpeed;
@@ -81,9 +83,10 @@ public class FireArrowFromRightHandGrip : MonoBehaviour
                 }
                 else
                 {
-                    currentArrow.GetComponent<Rigidbody>().velocity = spawnPoint.forward * 0.1f;
+                    currentArrow.GetComponent<Rigidbody>().velocity = spawnPoint.forward * 0f;
                     Destroy(currentArrow, 2f);
                     Debug.Log("Flecha no disparada: manos demasiado separadas.");
+                    Debug.Log($"Distancia horizontal: {horizontalDiff}/{maxHorizontalDistance}, Tensión Z: {pullDistance}/{maxPullDistance}");
                 }
 
                 currentArrow = null;
