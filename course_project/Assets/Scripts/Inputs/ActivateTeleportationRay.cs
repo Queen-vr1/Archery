@@ -9,12 +9,14 @@ public class ActivateTeleportationRay : MonoBehaviour
     public InputActionProperty rightActivate; 
     public GameObject rightTeleportation; 
 
-    private void Start()
+	  //public XRRayInteractor rightRay;
+	private void Start()
     {
     }
 
     void Update()
     {
-        rightTeleportation.SetActive(rightActivate.action.ReadValue<float>() > 0.1f);
+		bool isRightRayHovering = false;// rightRay.TryGetHitInfo(out Vector3 rightPos, out Vector3 rightNormal, out int rightNumber, out bool rightValid);
+		rightTeleportation.SetActive(!isRightRayHovering && rightActivate.action.ReadValue<float>() > 0.1f);
     }
 }

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 using Unity.XR.CoreUtils;
 using UnityEngine.XR;
+using System.Collections;
 using System.Collections.Generic;
 
 public class StartGame : MonoBehaviour
@@ -10,37 +11,46 @@ public class StartGame : MonoBehaviour
     public GameObject UI_ini;
     public GameObject UI_game;
     public XROrigin xrOrigin;
+    public GameObject portal;
+
+    public Transform head;
+    public float spawnDistance = 2f;
 
     public void StartGameAction()
     {
-
-        /*Vector3 position = new Vector3(0, 0, 0);
-        xrOrigin.transform.position = position;
-
-        xrOrigin.gameObject.SetActive(false);
-        xrOrigin.gameObject.SetActive(true);
-
-        Destroy(UI_ini);
-        UI_game.SetActive(true);*/
         if (GameManager.Instance == null)
         {
             Debug.LogError("GameManager no está en la escena.");
             return;
         }
 
+        if (portal != null)
+        {
+            portal.SetActive(true);
+            portal.transform.position = head.position + new Vector3(head.forward.x, 0, head.forward.z).normalized * spawnDistance;
+            portal.transform.LookAt(new Vector3(head.position.x, portal.transform.position.y, head.position.z));
+            portal.transform.forward *= -1;
+
+            PortalTeleport portalTeleporter = portal.GetComponent<PortalTeleport>();
+            if (portalTeleporter != null)
+            {
+                Debug.Log("Portal teleporter found, setting up portal.");
+                portalTeleporter.SetupPortal(GameState.Playing);
+            }
+
+            StartCoroutine(DisablePortalAfterSeconds(5f));
+        }
         //GameManager.Instance.SetState(GameState.Playing);
-        GameManager.Instance.SetState(GameState.Shop);
+        // GameManager.Instance.SetState(GameState.Shop);
+    }
+
+    private IEnumerator DisablePortalAfterSeconds(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        if (portal != null)
+        {
+            portal.SetActive(false);
+        }
     }
 
 }
-/*
-he pulsado el valor
-
-NullReferenceException: Object reference not set to an instance of an object
-StartGame.StartGameAction () (at Assets/Scripts/StartGame.cs:25)
-UnityEngine.Events.InvokableCall.Invoke () (at <c3dca0e61d5249b79ac00f7b2c7a01ef>:0)
-UnityEngine.Events.UnityEvent.Invoke () (at <c3dca0e61d5249b79ac00f7b2c7a01ef>:0)
-
-NullReferenceException: Object reference not set to an instance of an object
-UnityEngine.InputSystem.InputActionState.ApplyProcessors[TValue] (System.Int32 bindingIndex, TValue value, UnityEngine.InputSystem.InputControl`1[TValue] controlOfType) (at ./Library/PackageCache/com.unity.inputsystem@1.11.2/InputSystem/Actions/InputActionState.cs:2887)
-*/
