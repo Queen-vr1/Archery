@@ -34,7 +34,6 @@ public class StartGame : MonoBehaviour
             PortalTeleport portalTeleporter = portal.GetComponent<PortalTeleport>();
             if (portalTeleporter != null)
             {
-                Debug.Log("Portal teleporter found, setting up portal.");
                 portalTeleporter.SetupPortal(GameState.Playing);
             }
 
