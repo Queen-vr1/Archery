@@ -2,11 +2,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PortalTeleport : MonoBehaviour
-{
-	private string sceneToLoad;  
-	private GameState nextState;
+{ 
+	public GameState nextState;
 
-	private bool readyToTeleport = false;
+	public bool readyToTeleport = false;
 
 	public void SetupPortal(GameState gameState)
 	{
@@ -35,6 +34,10 @@ public class PortalTeleport : MonoBehaviour
 		if (GameManager.Instance != null)
 		{
 			GameManager.Instance.SetState(nextState);
+		}
+		else
+		{
+			Debug.LogError("GameManager no está en la escena.");
 		}
 	}
 }

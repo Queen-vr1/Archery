@@ -1047,6 +1047,8 @@ GameObject:
   - component: {fileID: 311306786}
   - component: {fileID: 311306788}
   - component: {fileID: 311306787}
+  - component: {fileID: 311306790}
+  - component: {fileID: 311306789}
   m_Layer: 0
   m_Name: Panel 3
   m_TagString: Untagged
@@ -1112,6 +1114,78 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 311306785}
   m_CullTransparentMesh: 1
+--- !u!114 &311306789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311306785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c65b7df9cc8347548a5fb496de97b531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xrOrigin: {fileID: 1849597706}
+  portal: {fileID: 694783707}
+  head: {fileID: 139697174}
+  spawnDistance: 2
+--- !u!114 &311306790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311306785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.7433963, g: 0.24005504, b: 0, a: 1}
+    m_PressedColor: {r: 0.6301887, g: 0.14625129, b: 0.14625129, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 317745140}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 311306789}
+        m_TargetAssemblyTypeName: ShopBotton, Assembly-CSharp
+        m_MethodName: StartShopAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: StartGame
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &317745136
 GameObject:
   m_ObjectHideFlags: 0
@@ -1786,6 +1860,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3bf16ce10cd54f42a6a525ffd8683e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextState: 0
+  readyToTeleport: 0
 --- !u!65 &694783712
 BoxCollider:
   m_ObjectHideFlags: 0
