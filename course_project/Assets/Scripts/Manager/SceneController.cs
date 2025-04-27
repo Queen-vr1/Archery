@@ -15,9 +15,9 @@ public class SceneController : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-    }
+	}
 
-    public void LoadSceneForState(GameState state)
+	public void LoadSceneForState(GameState state)
     {
         string sceneToLoad = GetSceneName(state);
         if (!string.IsNullOrEmpty(sceneToLoad))

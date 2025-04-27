@@ -15,10 +15,10 @@ public class RoundManager : MonoBehaviour
     {
         ScoreManager.Instance.ResetScore();
         timeRemaining = roundDuration;
-        currentTarget = Mathf.RoundToInt(baseTargetScore * Mathf.Pow(1.5f, GameManager.Instance.CurrentLevel - 1));
+		currentTarget = Mathf.RoundToInt(baseTargetScore * Mathf.Pow(1.5f, GameManager.Instance.CurrentLevel - 1));
         roundActive = true;
 
-        GameManager.Instance.SetState(GameState.Playing);
+        //GameManager.Instance.SetState(GameState.Playing);
         StartCoroutine(RunRound());
     }
 
