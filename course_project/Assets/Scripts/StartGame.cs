@@ -34,6 +34,7 @@ public class StartGame : MonoBehaviour
             PortalTeleport portalTeleporter = portal.GetComponent<PortalTeleport>();
             if (portalTeleporter != null)
             {
+                //portalTeleporter.SetupPortal(GameState.Shop);
                 portalTeleporter.SetupPortal(GameState.Playing);
             }
 
