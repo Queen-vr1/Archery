@@ -717,7 +717,6 @@ GameObject:
   - component: {fileID: 4688405842217069115}
   - component: {fileID: 4952851727944435749}
   - component: {fileID: 8654218025643126651}
-  - component: {fileID: 2244691831065564018}
   m_Layer: 5
   m_Name: Confirmation
   m_TagString: Untagged
@@ -791,23 +790,6 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 1
---- !u!114 &2244691831065564018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4849952957419469726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!1 &5136951633187220189
 GameObject:
   m_ObjectHideFlags: 0
@@ -1776,7 +1758,6 @@ GameObject:
   - component: {fileID: 1726080911059408259}
   - component: {fileID: 4775079204950356929}
   - component: {fileID: 8971654587573666062}
-  - component: {fileID: 2493087456639345660}
   m_Layer: 0
   m_Name: BuyButton
   m_TagString: Untagged
@@ -1850,23 +1831,6 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 1
---- !u!114 &2493087456639345660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9108288816538896967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!1001 &8630041043812191739
 PrefabInstance:
   m_ObjectHideFlags: 0
