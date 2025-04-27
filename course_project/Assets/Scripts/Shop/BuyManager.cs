@@ -44,10 +44,18 @@ public class BuyManager : MonoBehaviour
 
 	void OnYesButtonClicked(Item item)
 	{
-		Debug.Log("Holi");
-
-		// Pongo que se compre aqui por ahora 
-		ShopManager.Instance.Buy(item.itemPrefab.GetComponent<ShopItem>());
+		Debug.Log("Yes button clicked.");
+		ShopItem shopItem = item.itemPrefab.GetComponent<ShopItem>();
+		if (GameManager.Instance.Money >= shopItem.price)
+        {
+            Debug.Log("Shop Manager: Buying item.");
+            GameManager.Instance.RemoveMoney(shopItem.price);
+            shopItem.Buy();
+        }
+        else
+        {
+            Debug.Log("Shop Manager: U broke, not enough coins.");
+        }
 
 		item.buyPanel.SetActive(false);
 	}

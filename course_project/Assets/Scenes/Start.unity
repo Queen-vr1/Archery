@@ -2017,28 +2017,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 288696046223702708, guid: 3660a947e3abcbd48b0c724c6548c115, type: 3}
   m_PrefabInstance: {fileID: 1346856602}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &695957004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 695956999}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10d39513fc48d3b4395f0471ced807f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rightHandInteractor: {fileID: 724597221}
-  interactionManager: {fileID: 1605158233}
-  rightGripAction: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  arrow: {fileID: 100000, guid: cff4c024d20095a458a66e6e0d47bf1b, type: 3}
-  attachArrowPoint: {fileID: 1029582463}
-  spawnPoint: {fileID: 1380070708}
-  maxHorizontalDistance: 0.2
-  minPullDistance: 0.05
-  maxPullDistance: 0.5
-  maxArrowSpeed: 20
 --- !u!1 &709720862
 GameObject:
   m_ObjectHideFlags: 0
@@ -4892,9 +4870,6 @@ PrefabInstance:
       addedObject: {fileID: 1019408843}
     - targetCorrespondingSourceObject: {fileID: 288696046223702708, guid: 3660a947e3abcbd48b0c724c6548c115, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1380070708}
-    - targetCorrespondingSourceObject: {fileID: 288696046223702708, guid: 3660a947e3abcbd48b0c724c6548c115, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1919256956}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5711498706068831465, guid: 3660a947e3abcbd48b0c724c6548c115, type: 3}
@@ -4906,9 +4881,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5711498706068831465, guid: 3660a947e3abcbd48b0c724c6548c115, type: 3}
       insertIndex: -1
       addedObject: {fileID: 695957000}
-    - targetCorrespondingSourceObject: {fileID: 5711498706068831465, guid: 3660a947e3abcbd48b0c724c6548c115, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 695957004}
   m_SourcePrefab: {fileID: 100100000, guid: 3660a947e3abcbd48b0c724c6548c115, type: 3}
 --- !u!1 &1347692334
 GameObject:
@@ -4986,37 +4958,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1347692334}
   m_CullTransparentMesh: 1
---- !u!1 &1380070707
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1380070708}
-  m_Layer: 8
-  m_Name: AttachArrow
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1380070708
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1380070707}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.097, y: 0, z: 0.041}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 695957003}
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &1532848174
 GameObject:
   m_ObjectHideFlags: 0
