@@ -13,6 +13,7 @@ public class BuyManager : MonoBehaviour
 		public GameObject buyPanel;
 		public Button yesButton;
 		public Button noButton;
+		public GameObject retroPanel;
 	}
 
 	public List<Item> items = new List<Item>();
@@ -28,6 +29,7 @@ public class BuyManager : MonoBehaviour
 			item.noButton.onClick.AddListener(() => OnNoButtonClicked(item));
 
 			item.buyPanel.SetActive(false);
+			item.retroPanel.SetActive(false);
 		}
 	}
 
@@ -39,7 +41,17 @@ public class BuyManager : MonoBehaviour
 			pair.panel.SetActive(false);
 		}
 
+		ShopItem shopItem = item.itemPrefab.GetComponent<ShopItem>(); // OInly the case for the gems
+		if (shopItem.bought && !shopItem.stackable)
+		{
+			shopItem.SetStackError();
+			item.retroPanel.SetActive(true);
+			StartCoroutine(HideRetroPanel(item));
+			return;
+		}
+		
 		item.buyPanel.SetActive(true);
+
 	}
 
 	void OnYesButtonClicked(Item item)
@@ -49,15 +61,17 @@ public class BuyManager : MonoBehaviour
 		if (GameManager.Instance.Money >= shopItem.price)
         {
             Debug.Log("Shop Manager: Buying item.");
-            GameManager.Instance.RemoveMoney(shopItem.price);
             shopItem.Buy();
         }
         else
         {
+			shopItem.SetPriceError();
             Debug.Log("Shop Manager: U broke, not enough coins.");
         }
-
 		item.buyPanel.SetActive(false);
+
+		item.retroPanel.SetActive(true);
+		StartCoroutine(HideRetroPanel(item));
 	}
 
 	void OnNoButtonClicked(Item item)
@@ -65,4 +79,12 @@ public class BuyManager : MonoBehaviour
 		Debug.Log("Bye");
 		item.buyPanel.SetActive(false);
 	}
+
+	IEnumerator HideRetroPanel(Item item)
+	{
+		yield return new WaitForSeconds(2f);
+		item.retroPanel.SetActive(false);
+		item.itemPrefab.SetActive(false); 
+	}
+	
 }

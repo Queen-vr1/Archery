@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public int ChallengesCompleted { get; private set; } = 0;
 
     // Things for the shop
-    public List<ShopItem> itemsBought = new List<ShopItem>();
+    public List<string> itemsBought = new List<string>();
 
     private void Awake()
     {
@@ -64,26 +64,66 @@ public class GameManager : MonoBehaviour
         ChallengesCompleted = 0;
     }
 
-    // Things for the shop
-    void OnEnable()
-    {
-        ShopItem.onItemBought += RegisterItem;
-    }
-
-    void OnDisable()
-    {
-        ShopItem.onItemBought -= RegisterItem;
-    }
-
-    void RegisterItem(ShopItem item)
+    
+    public void RegisterItem(string item)
     {
         itemsBought.Add(item);
-        Debug.Log($"ShopRegister: Item added: {item.name}");
+        Debug.Log($"ShopRegister: Item added: {item}");
+
+    }
+
+    public void EquipArrow(string arrow)
+    {
+        string activeName = "";
+        bool arrowActive = GetActiveArrow(ref activeName);
+        if (arrowActive)
+        {
+            // Deactivate the previous arrow
+            itemsBought.Remove(activeName);
+            // Add the new arrow to the list
+            itemsBought.Add(arrow);      
+            Debug.Log("Active arrow replaced: " + activeName + " with " + arrow);
+
+        } else {
+            // Add the new arrow to the list
+            itemsBought.Add(arrow); 
+            Debug.Log("Active arrow: " + arrow);
+        }
 
     }
 
     public int GetItemCountByName(string itemName)
     {
-        return itemsBought.Count(item => item.name == itemName);
+        return itemsBought.Count(name => name == itemName);
     }
+
+    public bool GetActiveArrow(ref string arrowName) 
+    {
+        var arrows = itemsBought.Where(name => name.StartsWith("Arrow_"));
+
+        if (!arrows.Any())
+        {
+            Debug.Log("No arrow upgrades found.");
+            return false;
+        }
+
+        var grouped = arrows.GroupBy(name => name)
+                            .Select(group => new { Name = group.Key, Count = group.Count() })
+                            .Where(g => g.Count == 2) // Solo los que aparecen 2 veces
+                            .ToList();
+
+        if (grouped.Count == 0)
+        {
+            Debug.Log("No active arrows found.");
+            return false;
+        }
+        else
+        {
+            arrowName = grouped[0].Name;
+            Debug.Log($"Active arrow found: {arrowName}");
+            return true;
+        }
+    }
+   
 }
+
