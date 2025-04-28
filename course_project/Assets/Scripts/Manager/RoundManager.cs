@@ -57,9 +57,14 @@ public class RoundManager : MonoBehaviour
         //if (score >= currentTarget)
         if (true)
         {
-            //Debug.Log($"✅ Ronda superada con {score}/{currentTarget} puntos");
+			//Debug.Log($"✅ Ronda superada con {score}/{currentTarget} puntos");
+			if (GameManager.Instance == null)
+			{
+				Debug.LogError("GameManager no está en la escena.");
+				return;
+			}
 
-            int bonus = 3 + GameManager.Instance.ChallengesCompleted + Mathf.FloorToInt(timeRemaining / 10f);
+			int bonus = 3 + GameManager.Instance.ChallengesCompleted + Mathf.FloorToInt(timeRemaining / 10f);
             GameManager.Instance.AddMoney(bonus + roundMoney);
         
            if (portal2level != null)
@@ -74,7 +79,7 @@ public class RoundManager : MonoBehaviour
                 portal2level.transform.LookAt(new Vector3(head.position.x, portal2level.transform.position.y, head.position.z));
                 portal2level.transform.forward *= -1;
 
-                //GameManager.Instance.NextLevel();
+                GameManager.Instance.NextLevel();
             }
 
             if (portal2shop != null)

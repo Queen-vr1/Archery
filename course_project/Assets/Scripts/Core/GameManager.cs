@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
     public void NextLevel()
     {
         CurrentLevel++;
-        SetState(GameState.Playing);
+        // SetState(GameState.Playing);
     }
 
     public void CompleteChallenge()

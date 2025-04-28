@@ -2074,7 +2074,7 @@ MonoBehaviour:
   leftHandJoint: {fileID: 1115524170}
   rightHandJoint: {fileID: 1163088621}
   bodyCollider: {fileID: 1251976577}
-  bodyHeightMin: 0.5
+  bodyHeightMin: 1.11
   bodyHeightMax: 2
 --- !u!1 &724597213
 GameObject:
@@ -4611,7 +4611,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.1
-  m_Height: 1
+  m_Height: 1.5
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1251976578
@@ -6009,7 +6009,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_LocomotionProvider: {fileID: 1849597711}
-  m_MinHeight: 0
+  m_MinHeight: 1
   m_MaxHeight: Infinity
 --- !u!114 &1849597714
 MonoBehaviour:
