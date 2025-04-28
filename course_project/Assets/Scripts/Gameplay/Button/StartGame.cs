@@ -6,15 +6,17 @@ using UnityEngine.XR;
 using System.Collections;
 using System.Collections.Generic;
 
-public class ShopButton : MonoBehaviour
+public class StartGame : MonoBehaviour
 {
+    public GameObject UI_ini;
+    public GameObject UI_game;
     public XROrigin xrOrigin;
     public GameObject portal;
 
     public Transform head;
     public float spawnDistance = 2f;
 
-    public void StartShopAction()
+    public void StartGameAction()
     {
         if (GameManager.Instance == null)
         {
@@ -25,7 +27,7 @@ public class ShopButton : MonoBehaviour
         PortalTeleport portalTeleporter = portal.GetComponent<PortalTeleport>();
         if (portalTeleporter != null)
         {
-            portalTeleporter.Activate(head, spawnDistance, GameState.Shop, 5f, -1);
+            portalTeleporter.Activate(head, spawnDistance, GameState.Playing, 5f, -1f);
         }
         else
         {
