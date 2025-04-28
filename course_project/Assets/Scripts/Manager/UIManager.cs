@@ -10,6 +10,20 @@ public class UIManager : MonoBehaviour
 	public TextMeshProUGUI timeText;
 	public TextMeshProUGUI pointsText;
 	public TextMeshProUGUI multiplierText;
+	public TextMeshProUGUI challengeText;
+
+	private void Start()
+	{
+		if (ChallengeManager.Instance != null && ChallengeManager.Instance.challengeActive)
+		{
+			ShowChallenge(ChallengeManager.Instance.GetChallengeName());
+		}
+		else
+		{
+			if (challengeText != null)
+				challengeText.gameObject.SetActive(false);
+		}
+	}
 
 	private void Update()
 	{
@@ -37,5 +51,21 @@ public class UIManager : MonoBehaviour
 	private RoundManager RoundManagerInstance()
 	{
 		return FindObjectOfType<RoundManager>();
+	}
+
+	public void ShowChallenge(string challengeName)
+	{
+		StartCoroutine(ShowChallengeCoroutine(challengeName));
+	}
+
+	private IEnumerator ShowChallengeCoroutine(string challengeName)
+	{
+		if (challengeText != null)
+		{
+			challengeText.text = $"Challenge!\n{challengeName}";
+			challengeText.gameObject.SetActive(true);
+			yield return new WaitForSeconds(2f);
+			challengeText.gameObject.SetActive(false);
+		}
 	}
 }

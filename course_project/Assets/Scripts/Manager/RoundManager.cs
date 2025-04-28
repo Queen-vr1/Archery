@@ -28,10 +28,16 @@ public class RoundManager : MonoBehaviour
     public void StartRound()
     {
         //ScoreManager.Instance.ResetScore();
-        timeRemaining = roundDuration;
         //currentTarget = Mathf.RoundToInt(baseTargetScore * Mathf.Pow(1.5f, GameManager.Instance.CurrentLevel - 1));
         roundActive = true;
 
+		//if (GameManager.Instance.CurrentLevel == 1)
+		if (GameManager.Instance.CurrentLevel % 5 == 0)
+		{
+			ChallengeManager.Instance.StartChallenge();
+		}
+
+        timeRemaining = roundDuration;
 		roundMoney = 0;
 
 		//GameManager.Instance.SetState(GameState.Playing);
