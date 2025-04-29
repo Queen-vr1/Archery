@@ -28,8 +28,8 @@ public class RoundManager : MonoBehaviour
 
     public void StartRound()
     {
-        //ScoreManager.Instance.ResetScore();
-        //currentTarget = Mathf.RoundToInt(baseTargetScore * Mathf.Pow(1.5f, GameManager.Instance.CurrentLevel - 1));
+        ScoreManager.Instance.ResetScore();
+        currentTarget = Mathf.RoundToInt(baseTargetScore * Mathf.Pow(1.5f, GameManager.Instance.CurrentLevel - 1));
         roundActive = true;
 
 		//if (GameManager.Instance.CurrentLevel == 1)
@@ -128,5 +128,15 @@ public class RoundManager : MonoBehaviour
 	public void AddRoundMoney(int amount)
 	{
 		roundMoney += amount;
+	}
+
+	public int GetCurrentTarget()
+	{
+		return currentTarget;
+	}
+
+	public void SetCurrentTarget(int target)
+	{
+		currentTarget = target;
 	}
 }

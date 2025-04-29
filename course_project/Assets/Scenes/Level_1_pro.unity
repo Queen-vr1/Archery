@@ -4937,7 +4937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29682b28ada1d9f4a8245c2a6adab79d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundDuration: 2
+  roundDuration: 20
   baseTargetScore: 30
   portal2level: {fileID: 1076174351}
   portal2shop: {fileID: 237692347}

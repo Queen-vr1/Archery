@@ -37,6 +37,10 @@ public class ChallengeManager : MonoBehaviour
 				ApplyReduceTime();
 				break;
 
+			case ChallengeType.IncreaseTargetScore:
+				ApplyIncreaseTargetScore();
+				break;
+
 		}
 	}
 
@@ -48,7 +52,8 @@ public class ChallengeManager : MonoBehaviour
 	// Challenge types
 	public enum ChallengeType
 	{
-		ReduceTime
+		ReduceTime,
+		IncreaseTargetScore
 	}
 
 	public string GetChallengeName()
@@ -57,6 +62,10 @@ public class ChallengeManager : MonoBehaviour
 		{
 			case ChallengeType.ReduceTime:
 				return "Reduction of time";
+
+			case ChallengeType.IncreaseTargetScore:
+				return "A higher target score";
+
 			default:
 				return "No challenge";
 		}
@@ -73,6 +82,19 @@ public class ChallengeManager : MonoBehaviour
 			float newDuration = roundManager.roundDuration * (1 - reduction);
 			roundManager.roundDuration = Mathf.Max(20f, newDuration);
 			Debug.Log($"Reduction: {reduction * 100}%, Time: {roundManager.roundDuration} seconds");
+		}
+	}
+
+	private void ApplyIncreaseTargetScore()
+	{
+		RoundManager roundManager = FindObjectOfType<RoundManager>();
+		if (roundManager != null)
+		{
+			float increase = 2f + 0.5f * dsf;
+			int target = roundManager.GetCurrentTarget();
+			int newTarget = Mathf.RoundToInt(target * increase);
+			roundManager.SetCurrentTarget(newTarget);
+			Debug.Log($"Increase: {increase}, Old Target: {target}, New Target: {newTarget}");
 		}
 	}
 }
