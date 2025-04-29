@@ -41,6 +41,10 @@ public class ChallengeManager : MonoBehaviour
 				ApplyIncreaseTargetScore();
 				break;
 
+			case ChallengeType.MoneyDrain:
+				StartCoroutine(ApplyMoneyDrain());
+				break;
+
 		}
 	}
 
@@ -53,7 +57,8 @@ public class ChallengeManager : MonoBehaviour
 	public enum ChallengeType
 	{
 		ReduceTime,
-		IncreaseTargetScore
+		IncreaseTargetScore,
+		MoneyDrain
 	}
 
 	public string GetChallengeName()
@@ -65,6 +70,9 @@ public class ChallengeManager : MonoBehaviour
 
 			case ChallengeType.IncreaseTargetScore:
 				return "A higher target score";
+
+			case ChallengeType.MoneyDrain:
+				return "Money drain";
 
 			default:
 				return "No challenge";
@@ -95,6 +103,25 @@ public class ChallengeManager : MonoBehaviour
 			int newTarget = Mathf.RoundToInt(target * increase);
 			roundManager.SetCurrentTarget(newTarget);
 			Debug.Log($"Increase: {increase}, Old Target: {target}, New Target: {newTarget}");
+		}
+	}
+
+	private IEnumerator ApplyMoneyDrain()
+	{
+		int dsf = GameManager.Instance.ChallengesCompleted;
+		float time = Mathf.Max(1f, 5f - dsf);
+
+		while (challengeActive)
+		{
+			yield return new WaitForSeconds(time);
+
+			int money = GameManager.Instance.Money;
+			if (money > 0)
+			{
+				int drain = Mathf.RoundToInt(0.1f * money);
+				GameManager.Instance.RemoveMoney(drain);
+				Debug.Log($"Money drain: {drain}€");
+			}
 		}
 	}
 }

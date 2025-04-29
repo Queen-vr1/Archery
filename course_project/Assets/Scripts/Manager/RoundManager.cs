@@ -71,6 +71,12 @@ public class RoundManager : MonoBehaviour
 				return;
 			}
 
+			if (ChallengeManager.Instance.challengeActive)
+			{
+				GameManager.Instance.CompleteChallenge();
+				ChallengeManager.Instance.EndChallenge();
+			}
+
 			int bonus = 3 + GameManager.Instance.ChallengesCompleted + Mathf.FloorToInt(timeRemaining / 10f);
             GameManager.Instance.AddMoney(bonus + roundMoney);
 

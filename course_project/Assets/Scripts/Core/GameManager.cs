@@ -44,7 +44,8 @@ public class GameManager : MonoBehaviour
     public void RemoveMoney(int amount)
     {
         Money -= amount;
-        Debug.Log($"Dinero actual: €{Money}");
+		Money = Mathf.Max(Money, 0);
+		Debug.Log($"Dinero actual: €{Money}");
     }
     public void NextLevel()
     {
