@@ -8,8 +8,6 @@ using System.Collections.Generic;
 
 public class StartGame : MonoBehaviour
 {
-    public GameObject UI_ini;
-    public GameObject UI_game;
     public XROrigin xrOrigin;
     public GameObject portal;
 

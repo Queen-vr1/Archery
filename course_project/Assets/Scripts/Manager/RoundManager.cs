@@ -19,6 +19,7 @@ public class RoundManager : MonoBehaviour
     public Transform head;
     public XROrigin xrOrigin;
     public float spawnDistance = 2f;
+    public bool isFinalLevel = false;
 
     private void Start()
     {
@@ -77,7 +78,14 @@ public class RoundManager : MonoBehaviour
             if (portalTeleporter != null)
             {
                 portalTeleporter.Activate(head, spawnDistance, GameState.Playing, -1f, 20f);
-                GameManager.Instance.NextLevel();
+                if (!isFinalLevel)
+                {
+                    GameManager.Instance.NextLevel();
+                }
+                else
+                {
+                    GameManager.Instance.RepeatLevels();
+                }
             }
             else
             {

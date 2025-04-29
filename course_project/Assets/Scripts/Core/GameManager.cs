@@ -57,6 +57,11 @@ public class GameManager : MonoBehaviour
         ChallengesCompleted++;
     }
 
+    public void RepeatLevels()
+    {
+        CurrentLevel = 1;
+    }
+
     public void ResetProgress()
     {
         CurrentLevel = 1;
