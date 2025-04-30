@@ -2048,64 +2048,6 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -1636515391019944688, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_ButtonPressPoint: 0.5
---- !u!1 &259688769
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 259688771}
-  - component: {fileID: 259688770}
-  m_Layer: 0
-  m_Name: Balloon_Spawmer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &259688770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 259688769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82722f033cec9364baa99722c8895bef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  balloonTypes:
-  - prefab: {fileID: 5749882182593781771, guid: 5145f86300ba6bdcbacd41742c660566, type: 3}
-    weight: 0.3
-  - prefab: {fileID: 8179302595022777391, guid: 7f32a0fb3c26ce85db6d744c70521f6e, type: 3}
-    weight: 0.1
-  - prefab: {fileID: 6437042774827374851, guid: 50f4f8307e4c9430eae3770310dfd928, type: 3}
-    weight: 0.1
-  - prefab: {fileID: 1792860094880631786, guid: 4ab85900db7c9341b88eab08c1d10d0c, type: 3}
-    weight: 0.1
-  balloonCount: 30
-  balloonSize: {x: 0.52, y: 0.52, z: 1}
-  minDistance: 2
-  minHeight: 5
-  maxHeight: 30
---- !u!4 &259688771
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 259688769}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.6, y: 2.74, z: 0.5531617}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &269461439
 GameObject:
   m_ObjectHideFlags: 0
@@ -4141,6 +4083,66 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 3321238092727456677, guid: 198661908cc7bea4c92ffe2bcd4cefed, type: 3}
+--- !u!1 &788500397
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 788500399}
+  - component: {fileID: 788500398}
+  m_Layer: 0
+  m_Name: Balloon_Spawmer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &788500398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788500397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82722f033cec9364baa99722c8895bef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  balloonTypes:
+  - prefab: {fileID: 5749882182593781771, guid: 5145f86300ba6bdcbacd41742c660566, type: 3}
+    weight: 0.3
+  - prefab: {fileID: 8179302595022777391, guid: 7f32a0fb3c26ce85db6d744c70521f6e, type: 3}
+    weight: 0.1
+  - prefab: {fileID: 6437042774827374851, guid: 50f4f8307e4c9430eae3770310dfd928, type: 3}
+    weight: 0.1
+  - prefab: {fileID: 1792860094880631786, guid: 4ab85900db7c9341b88eab08c1d10d0c, type: 3}
+    weight: 0.1
+  - prefab: {fileID: 1792860094880631786, guid: d447b3a357fe74d48ac62ac929a0baf1, type: 3}
+    weight: 0.1
+  balloonCount: 20
+  balloonSize: {x: 0.52, y: 0.52, z: 1}
+  minDistance: 3
+  minHeight: 4
+  maxHeight: 30
+--- !u!4 &788500399
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788500397}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.71949273, y: 1.433998, z: 0.5531617}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &831635273
 GameObject:
   m_ObjectHideFlags: 0
@@ -13004,7 +13006,7 @@ SceneRoots:
   - {fileID: 451060455690255604}
   - {fileID: 8259180295801745129}
   - {fileID: 352186031}
-  - {fileID: 259688771}
+  - {fileID: 788500399}
   - {fileID: 49531814}
   - {fileID: 1807220471}
   - {fileID: 843477140}
