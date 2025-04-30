@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 
 public class MoneyBalloon : Balloon
@@ -33,9 +33,9 @@ public class MoneyBalloon : Balloon
 
         rewards.Add(new RewardData
         {
-            category = RewardCategory.Points,
-            modifier = RewardModifier.Multiplier,
-            value = 1.2f
+            category = RewardCategory.Money,
+            modifier = RewardModifier.Flat,
+            value = 3f
         });
     }
 

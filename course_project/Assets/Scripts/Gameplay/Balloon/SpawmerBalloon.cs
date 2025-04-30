@@ -47,7 +47,14 @@ public class SpawmerBalloon : MonoBehaviour
                 GameObject balloon = Instantiate(prefab, spawnPos, randomYRotation);
                 balloon.transform.localScale = balloonSize;
                 placedBounds.Add(GetFullBounds(balloon));
-            }
+
+				// Initialize
+				Balloon b = balloon.GetComponent<Balloon>();
+				if (b != null)
+				{
+					b.Init();
+				}
+			}
         }
     }
 

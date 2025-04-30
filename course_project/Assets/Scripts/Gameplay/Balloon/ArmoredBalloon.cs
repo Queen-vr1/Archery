@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 
@@ -36,10 +36,16 @@ public class ArmoredBalloon : Balloon
         rewards.Add(new RewardData
         {
             category = RewardCategory.Points,
-            modifier = RewardModifier.Multiplier,
-            value = 1.2f
+            modifier = RewardModifier.Flat,
+            value = 1f
         });
-    }
+		rewards.Add(new RewardData
+		{
+			category = RewardCategory.Points,
+			modifier = RewardModifier.Multiplier,
+			value = 1.2f
+		});
+	}
 
     void Update()
     {

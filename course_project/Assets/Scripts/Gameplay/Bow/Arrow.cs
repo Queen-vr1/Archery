@@ -27,7 +27,12 @@ public class Arrow : MonoBehaviour
             {
                 Debug.Log("Es balloon");
                 balloon.TakeDamage(1); // Ver cuanto daño hace la flecha
-            }
+				if (balloon.IsDestroyed())
+				{
+					balloon.GetRewards();
+					Debug.Log("Balloon destroyed");
+				}
+			}
         }
         else if (collision.gameObject.CompareTag("Floor"))
         {

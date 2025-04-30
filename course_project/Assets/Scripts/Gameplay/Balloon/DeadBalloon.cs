@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 
 public class DeadBalloon : Balloon
@@ -34,8 +34,8 @@ public class DeadBalloon : Balloon
         rewards.Add(new RewardData
         {
             category = RewardCategory.Points,
-            modifier = RewardModifier.Multiplier,
-            value = 1.2f
+            modifier = RewardModifier.Flat,
+			value = -5f
         });
     }
 

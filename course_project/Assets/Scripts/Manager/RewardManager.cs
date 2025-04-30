@@ -30,7 +30,7 @@ public static class RewardManager
         switch (reward.modifier)
         {
             case RewardModifier.Flat:
-                ScoreManager.Instance.AddPoints(Mathf.RoundToInt(reward.value));
+				ScoreManager.Instance.AddPoints(Mathf.RoundToInt(reward.value));
                 break;
             case RewardModifier.Multiplier:
                 ScoreManager.Instance.SetMultiplier(

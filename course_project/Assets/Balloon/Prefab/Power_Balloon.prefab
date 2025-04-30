@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6896187502643686634}
   - component: {fileID: 5875050293988870784}
   - component: {fileID: -2448176061025980709}
-  - component: {fileID: 4995896214174660491}
+  - component: {fileID: 2760065923841993241}
   m_Layer: 0
   m_Name: Power_Balloon
   m_TagString: Balloon
@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b30c17fadd363c4e821e3e4ea345799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4995896214174660491
+--- !u!114 &2760065923841993241
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1792860094880631786}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2424fe035f9381844b44d02a2e066693, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f9e0de419a10df4fbca92ce843d9a64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rewards: []
