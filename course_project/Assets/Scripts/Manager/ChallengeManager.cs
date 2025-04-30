@@ -45,6 +45,13 @@ public class ChallengeManager : MonoBehaviour
 				StartCoroutine(ApplyMoneyDrain());
 				break;
 
+			case ChallengeType.ReduceMultiplier:
+				StartCoroutine(ApplyReduceMultiplier());
+				break;
+
+			case ChallengeType.DeadBalloons:
+				ApplyDeadBalloons();
+				break;
 		}
 	}
 
@@ -58,7 +65,9 @@ public class ChallengeManager : MonoBehaviour
 	{
 		ReduceTime,
 		IncreaseTargetScore,
-		MoneyDrain
+		MoneyDrain,
+		ReduceMultiplier,
+		DeadBalloons
 	}
 
 	public string GetChallengeName()
@@ -73,6 +82,12 @@ public class ChallengeManager : MonoBehaviour
 
 			case ChallengeType.MoneyDrain:
 				return "Money drain";
+
+			case ChallengeType.ReduceMultiplier:
+				return "Multiplier reduction";
+
+			case ChallengeType.DeadBalloons:
+				return "Dead balloons";
 
 			default:
 				return "No challenge";
@@ -109,7 +124,7 @@ public class ChallengeManager : MonoBehaviour
 	private IEnumerator ApplyMoneyDrain()
 	{
 		int dsf = GameManager.Instance.ChallengesCompleted;
-		float time = Mathf.Max(1f, 5f - dsf);
+		float time = Mathf.Max(1f, 10f - dsf);
 
 		while (challengeActive)
 		{
@@ -121,6 +136,45 @@ public class ChallengeManager : MonoBehaviour
 				int drain = Mathf.RoundToInt(0.1f * money);
 				GameManager.Instance.RemoveMoney(drain);
 				Debug.Log($"Money drain: {drain}€");
+			}
+		}
+	}
+
+	private IEnumerator ApplyReduceMultiplier()
+	{
+		int dsf = GameManager.Instance.ChallengesCompleted;
+		float time = Mathf.Max(1f, 10f - dsf);
+		float reduction = 1f + 2f * dsf;
+
+		while (challengeActive)
+		{
+			yield return new WaitForSeconds(time);
+
+			if (ScoreManager.Instance != null)
+			{
+				float newMultiplier = Mathf.Max(1f, ScoreManager.Instance.Multiplier - reduction);
+				ScoreManager.Instance.SetMultiplier(newMultiplier);
+				Debug.Log($"Reduction: {reduction}, New Multiplier: {newMultiplier}");
+			}
+		}
+	}
+
+	private void ApplyDeadBalloons()
+	{
+		float count = 0.3f + 0.3f * dsf;
+
+		SpawmerBalloon spawner = FindObjectOfType<SpawmerBalloon>();
+		if (spawner != null)
+		{
+			BalloonType balloon = spawner.balloonTypes.Find(bt => bt.prefab.name == "Dead_Balloon");
+			if (balloon != null)
+			{
+				balloon.weight = Mathf.Min(balloon.weight + count, 0.8f);
+				Debug.Log($"DeadBalloon weight: {balloon.weight}");
+			}
+			else
+			{
+				Debug.LogError("Prefab not found");
 			}
 		}
 	}

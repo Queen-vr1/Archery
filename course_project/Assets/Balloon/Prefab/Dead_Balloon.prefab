@@ -14450,7 +14450,7 @@ GameObject:
   - component: {fileID: 679000187720541159}
   - component: {fileID: 1306009412252108244}
   m_Layer: 0
-  m_Name: Dead_Balloon Variant 1
+  m_Name: Dead_Balloon
   m_TagString: Balloon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
