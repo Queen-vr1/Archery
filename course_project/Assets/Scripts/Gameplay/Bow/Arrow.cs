@@ -1,13 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
+
+    // For the explosive arrow
+    public GameObject explosionEffect;
+    public float explosionRadius = 200f;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
@@ -15,6 +18,41 @@ public class Arrow : MonoBehaviour
     {
         
     }
+
+
+    void Explode(Vector3 position)
+    {
+        // Instanciar FX de explosión
+        if (explosionEffect != null)
+        {
+            GameObject fx = Instantiate(explosionEffect, position, Quaternion.identity);
+            fx.transform.localScale = new Vector3(30, 30, 30);
+        }
+
+        // Encontrar todos los colliders dentro del radio
+        Collider[] colliders = Physics.OverlapSphere(position, explosionRadius);
+        foreach (Collider nearbyObject in colliders)
+        {
+            Debug.Log("Arrow exploded near: " + nearbyObject.name);
+
+            if (nearbyObject.name == "balloon_up")
+            {
+                Balloon balloon = nearbyObject.transform.parent.GetComponent<Balloon>();
+                if (balloon != null)
+                {
+                    balloon.TakeDamage(1);
+                    if (balloon.IsDestroyed())
+                    {
+                        balloon.GetRewards();
+                        Debug.Log("Balloon destroyed (area explosion)");
+                    }
+                }
+            }
+        }
+
+        Destroy(gameObject);
+    }
+
 
     void OnCollisionEnter(Collision collision)
     {
@@ -33,6 +71,10 @@ public class Arrow : MonoBehaviour
 					Debug.Log("Balloon destroyed");
 				}
 			}
+
+            //Explode(collision.contacts[0].point);
+            
+
         }
         else if (collision.gameObject.CompareTag("Floor"))
         {

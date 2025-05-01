@@ -1807,7 +1807,7 @@ MonoBehaviour:
   maxHorizontalDistance: 0.2
   minPullDistance: 0.05
   maxPullDistance: 0.5
-  maxArrowSpeed: 20
+  maxArrowSpeed: 200
 --- !u!1 &709720862
 GameObject:
   m_ObjectHideFlags: 0
@@ -4937,7 +4937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29682b28ada1d9f4a8245c2a6adab79d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundDuration: 20
+  roundDuration: 300
   baseTargetScore: 30
   portal2level: {fileID: 1076174351}
   portal2shop: {fileID: 237692347}
@@ -5612,10 +5612,10 @@ MonoBehaviour:
   - prefab: {fileID: 6437042774827374851, guid: 50f4f8307e4c9430eae3770310dfd928, type: 3}
     weight: 0.1
   - prefab: {fileID: 1792860094880631786, guid: 4ab85900db7c9341b88eab08c1d10d0c, type: 3}
-    weight: 0.1
+    weight: 0.7
   - prefab: {fileID: 1792860094880631786, guid: d447b3a357fe74d48ac62ac929a0baf1, type: 3}
     weight: 0.1
-  balloonCount: 20
+  balloonCount: 200
   balloonSize: {x: 0.52, y: 0.52, z: 1}
   minDistance: 3
   minHeight: 4
