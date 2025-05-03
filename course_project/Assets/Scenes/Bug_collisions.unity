@@ -4944,6 +4944,7 @@ MonoBehaviour:
   head: {fileID: 139697174}
   xrOrigin: {fileID: 1849597706}
   spawnDistance: 3
+  isFinalLevel: 0
 --- !u!4 &1258945991
 Transform:
   m_ObjectHideFlags: 0
