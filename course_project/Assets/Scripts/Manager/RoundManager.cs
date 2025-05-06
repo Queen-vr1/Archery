@@ -21,15 +21,30 @@ public class RoundManager : MonoBehaviour
     public float spawnDistance = 2f;
     public bool isFinalLevel = false;
 
+    [SerializeField] private SpawmerBalloon spawmerBalloon;
+
+
     private void Start()
     {
+        GameManager.Instance.GenerateHandicap();
         StartRound();
+        if (spawmerBalloon == null)
+        {
+            Debug.LogError("SpawmerBalloon no está asignado. Buscando en el objeto actual.");
+            spawmerBalloon = GetComponent<SpawmerBalloon>();
+        }
+        int penaltyBalloons = GameManager.Instance.HandicapState.FewerBalloons;
+        float penaltySize = GameManager.Instance.HandicapState.SizePenalty;
+        
+        spawmerBalloon.initializateAndSpawn(penaltyBalloons, penaltySize);
     }
 
     public void StartRound()
     {
         ScoreManager.Instance.ResetScore();
         currentTarget = Mathf.RoundToInt(baseTargetScore * Mathf.Pow(1.5f, GameManager.Instance.CurrentLevel - 1));
+        currentTarget += (int)GameManager.Instance.HandicapState.TargetPoints;
+
         roundActive = true;
 
 		//if (GameManager.Instance.CurrentLevel == 1)
@@ -38,7 +53,11 @@ public class RoundManager : MonoBehaviour
 			ChallengeManager.Instance.StartChallenge();
 		}
 
-        timeRemaining = roundDuration;
+        timeRemaining = roundDuration - GameManager.Instance.HandicapState.LessTime;
+        if (timeRemaining < 10)
+        {
+            timeRemaining = 10;
+        }
 		roundMoney = 0;
 
 		//GameManager.Instance.SetState(GameState.Playing);

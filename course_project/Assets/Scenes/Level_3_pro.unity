@@ -6062,7 +6062,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29682b28ada1d9f4a8245c2a6adab79d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundDuration: 2
+  roundDuration: 10
   baseTargetScore: 30
   portal2level: {fileID: 1006176044}
   portal2shop: {fileID: 425999845}
@@ -6070,6 +6070,7 @@ MonoBehaviour:
   xrOrigin: {fileID: 1185687275}
   spawnDistance: 3
   isFinalLevel: 0
+  spawmerBalloon: {fileID: 1875938155}
 --- !u!4 &646827830
 Transform:
   m_ObjectHideFlags: 0

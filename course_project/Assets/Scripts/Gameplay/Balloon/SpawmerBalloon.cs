@@ -24,19 +24,26 @@ public class SpawmerBalloon : MonoBehaviour
 
     void Start()
     {
-        initializateAndSpawn();
     }
     
-    public void initializateAndSpawn()
+    public void initializateAndSpawn(int balloonPenalty, float sizePenalty)
     {
         collidables = ObtenerObjetosPorTags(new List<string> { "Colissionable_Object"});
         planes = ObtenerObjetosPorTags(new List<string> { "Floor" });
-        SpawnBalloons();
+
+        int adjustedBalloonCount = Mathf.Max(1, balloonCount - balloonPenalty);
+        Debug.Log("BALLOON SIZE: " + balloonSize);
+        Debug.Log("BALLOON SIZE PENALTY: " + sizePenalty);
+        Vector3 adjustedSize = balloonSize - new Vector3(sizePenalty, sizePenalty, sizePenalty);
+        Debug.Log("ADJUSTED SIZE: " + adjustedSize);
+
+        SpawnBalloons(adjustedBalloonCount, adjustedSize);
     }
 
-    public void SpawnBalloons()
+    public void SpawnBalloons(int count, Vector3 size)
     {
-        for (int i = 0; i < balloonCount; i++)
+        placedBounds.Clear();
+        for (int i = 0; i < count; i++)
         {
             Bounds? validBounds = GetValidBounds();
             if (validBounds.HasValue)
@@ -45,7 +52,7 @@ public class SpawmerBalloon : MonoBehaviour
                 GameObject prefab = GetRandomBalloonPrefab();
                 Quaternion randomYRotation = Quaternion.Euler(0, Random.Range(0f, 360f), 0);
                 GameObject balloon = Instantiate(prefab, spawnPos, randomYRotation);
-                balloon.transform.localScale = balloonSize;
+                balloon.transform.localScale = size;
                 placedBounds.Add(GetFullBounds(balloon));
 
 				// Initialize

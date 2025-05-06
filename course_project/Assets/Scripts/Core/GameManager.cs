@@ -8,11 +8,13 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public GameState CurrentState { get; private set; } = GameState.MainMenu;
+    public HandicapType CurrentHandicap { get; private set; } = HandicapType.None;
+    public HandicapState HandicapState { get; private set; } = new HandicapState();
 
     public int CurrentLevel { get; private set; } = 1;
     public int Money { get; private set; } = 0;
     public int ChallengesCompleted { get; private set; } = 0;
-
+    
     // Things for the shop
     public List<string> itemsBought = new List<string>();
 
@@ -26,6 +28,23 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+    }
+
+
+    public void GenerateHandicap()
+    {
+        if (CurrentLevel >= 1)
+        {
+            // Enum.GetValues devuelve todos los valores, excluye "None"
+            var values = System.Enum.GetValues(typeof(HandicapType)).Cast<HandicapType>().Where(h => h != HandicapType.None).ToArray();
+            CurrentHandicap = values[Random.Range(0, values.Length)];
+            HandicapState.Apply(CurrentHandicap);
+            Debug.Log("🧠 Handicap aplicado: " + CurrentHandicap);
+        }
+        else
+        {
+            CurrentHandicap = HandicapType.None;
+        }
     }
 
     public void SetState(GameState newState)

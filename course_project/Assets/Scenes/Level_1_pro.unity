@@ -5422,7 +5422,7 @@ GameObject:
   - component: {fileID: 1050267544}
   m_Layer: 0
   m_Name: Plants
-  m_TagString: Colissionable_Object
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6478,7 +6478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29682b28ada1d9f4a8245c2a6adab79d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundDuration: 300
+  roundDuration: 30
   baseTargetScore: 30
   portal2level: {fileID: 1076174351}
   portal2shop: {fileID: 237692347}
@@ -6486,6 +6486,7 @@ MonoBehaviour:
   xrOrigin: {fileID: 1849597706}
   spawnDistance: 3
   isFinalLevel: 0
+  spawmerBalloon: {fileID: 1770838815}
 --- !u!4 &1258945991
 Transform:
   m_ObjectHideFlags: 0
