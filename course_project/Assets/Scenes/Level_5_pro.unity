@@ -1245,7 +1245,7 @@ RectTransform:
   m_GameObject: {fileID: 337798387}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: -11.382}
-  m_LocalScale: {x: 0.002246319, y: 0.0009159899, z: 0.0026450001}
+  m_LocalScale: {x: 0.00023728985, y: 0.00009676058, z: 0.0002794045}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1683755467}
@@ -1270,8 +1270,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   head: {fileID: 537609467}
-  spawnDistance: 1
-  spawnHeight: -0.48
+  spawnDistance: 0.1
+  spawnHeight: -0.05
   menu: {fileID: 337798387}
 --- !u!114 &337798390
 MonoBehaviour:
@@ -4863,7 +4863,7 @@ RectTransform:
   m_GameObject: {fileID: 1090282901}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: -11.3914}
-  m_LocalScale: {x: 0.0036284793, y: 0.0009159899, z: 0.002645}
+  m_LocalScale: {x: 0.0003897255, y: 0.0000983841, z: 0.00028409256}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1836846177}
@@ -4892,8 +4892,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   head: {fileID: 537609467}
-  spawnDistance: 1
-  spawnHeight: 0.48
+  spawnDistance: 0.1
+  spawnHeight: 0.05
   menu: {fileID: 1090282901}
 --- !u!114 &1090282904
 MonoBehaviour:

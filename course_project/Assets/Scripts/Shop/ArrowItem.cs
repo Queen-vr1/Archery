@@ -19,8 +19,14 @@ public class ArrowItem : ShopItem
         }
 
         GameManager.Instance.EquipArrow(name);  // Notify subscribers that an item has been equipped
-        // The arrow upgrades always stay on the shop
-    }
+												// The arrow upgrades always stay on the shop
+
+		Rigidbody rb = GetComponent<Rigidbody>();
+		if (rb != null)
+		{
+			rb.useGravity = true;
+		}
+	}
 
     public override void Start()
     {

@@ -122,6 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ca2566fa7969f94c9a5df3489b768b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionEffect: {fileID: 0}
+  explosionRadius: 200
 --- !u!135 &1439266403591968736
 SphereCollider:
   m_ObjectHideFlags: 0
