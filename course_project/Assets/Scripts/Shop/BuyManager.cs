@@ -41,7 +41,7 @@ public class BuyManager : MonoBehaviour
 			pair.panel.SetActive(false);
 		}
 
-		ShopItem shopItem = item.itemPrefab.GetComponent<ShopItem>(); // OInly the case for the gems
+		ShopItem shopItem = item.itemPrefab.GetComponent<ShopItem>(); // Only the case for the gems
 		if (shopItem.bought && !shopItem.stackable)
 		{
 			shopItem.SetStackError();
@@ -62,7 +62,11 @@ public class BuyManager : MonoBehaviour
         {
             Debug.Log("Shop Manager: Buying item.");
             shopItem.Buy();
-        }
+			if (shopItem.type != "Arrow")
+			{
+				item.itemPrefab.SetActive(false);
+			}
+		}
         else
         {
 			shopItem.SetPriceError();
@@ -84,7 +88,6 @@ public class BuyManager : MonoBehaviour
 	{
 		yield return new WaitForSeconds(2f);
 		item.retroPanel.SetActive(false);
-		item.itemPrefab.SetActive(false); 
 	}
 	
 }

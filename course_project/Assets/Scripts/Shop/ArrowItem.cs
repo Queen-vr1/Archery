@@ -21,11 +21,11 @@ public class ArrowItem : ShopItem
         GameManager.Instance.EquipArrow(name);  // Notify subscribers that an item has been equipped
 												// The arrow upgrades always stay on the shop
 
-		Rigidbody rb = GetComponent<Rigidbody>();
-		if (rb != null)
-		{
-			rb.useGravity = true;
-		}
+		//Rigidbody rb = GetComponent<Rigidbody>();
+		//if (rb != null)
+		//{
+			//rb.useGravity = true;
+		//}
 	}
 
     public override void Start()
@@ -41,7 +41,8 @@ public class ArrowItem : ShopItem
 
         price = basePrice;
 
-        TextMeshProUGUI[] inputs = GetComponentsInChildren<TextMeshProUGUI>(true);
+		GameObject items = GameObject.Find(name + "Items");
+		TextMeshProUGUI[] inputs = items.GetComponentsInChildren<TextMeshProUGUI>(true);
        
         foreach (var input in inputs)
         {
