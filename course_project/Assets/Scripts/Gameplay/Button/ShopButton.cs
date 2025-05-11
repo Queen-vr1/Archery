@@ -14,8 +14,11 @@ public class ShopButton : MonoBehaviour
     public Transform head;
     public float spawnDistance = 2f;
 
+    public AudioSource clickSound;
+
     public void StartShopAction()
     {
+        clickSound.Play();
         if (GameManager.Instance == null)
         {
             Debug.LogError("GameManager no está en la escena.");

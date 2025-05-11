@@ -24,6 +24,39 @@ public class ShopItem : MonoBehaviour
         GameManager.Instance.RemoveMoney(price); 
     }
 
+    public virtual void Update()
+    {
+        int lvl = GameManager.Instance.GetItemCountByName(name);
+        if (lvl >= 1) bought = true;
+
+        price = basePrice * (int)Mathf.Pow(priceMultiplier, lvl);
+
+        TextMeshProUGUI[] inputs = GetComponentsInChildren<TextMeshProUGUI>(true);
+       
+        foreach (var input in inputs)
+        {
+            if (input.gameObject.name == "PriceText")
+            {
+                input.text = price.ToString() + " €";
+            }
+
+            if (input.gameObject.name == "InfoText")
+            {
+                input.text = infoText + "\n" + "Lvl: " + lvl.ToString();
+            }
+
+            if (input.gameObject.name == "RetroText")
+            {
+                input.text = "Item Bought";
+            }
+
+            if (input.gameObject.name == "ConfText")
+            {
+                input.text = "Buy This Item?";
+            } 
+    
+        }
+    }
     public virtual void Start()
     {
         gameObject.SetActive(true); // Ensure the item is active at the start

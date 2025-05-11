@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
             var values = System.Enum.GetValues(typeof(HandicapType)).Cast<HandicapType>().Where(h => h != HandicapType.None).ToArray();
             CurrentHandicap = values[Random.Range(0, values.Length)];
             HandicapState.Apply(CurrentHandicap);
-            Debug.Log("🧠 Handicap aplicado: " + CurrentHandicap);
+            Debug.Log("Handicap aplicado: " + CurrentHandicap);
         }
         else
         {

@@ -19,6 +19,10 @@ public class BuyManager : MonoBehaviour
 	public List<Item> items = new List<Item>();
 	public PanelManager panelManager;
 
+	public AudioSource buySound;
+	public AudioSource clickSound;
+
+
 	void Start()
 	{
 		Debug.Log("Start");
@@ -35,6 +39,7 @@ public class BuyManager : MonoBehaviour
 
 	void OnItemSelected(Item item)
 	{
+		clickSound.Play();
 		Debug.Log("Seleccionado");
 		foreach (var pair in panelManager.pairs)
 		{
@@ -57,6 +62,7 @@ public class BuyManager : MonoBehaviour
 	void OnYesButtonClicked(Item item)
 	{
 		Debug.Log("Yes button clicked.");
+		clickSound.Play();
 		ShopItem shopItem = item.itemPrefab.GetComponent<ShopItem>();
 		if (GameManager.Instance.Money >= shopItem.price)
         {
@@ -64,6 +70,7 @@ public class BuyManager : MonoBehaviour
             shopItem.Buy();
 			if (shopItem.type != "Arrow")
 			{
+				buySound.Play();
 				item.itemPrefab.SetActive(false);
 			}
 		}
@@ -80,6 +87,7 @@ public class BuyManager : MonoBehaviour
 
 	void OnNoButtonClicked(Item item)
 	{
+		clickSound.Play();
 		Debug.Log("Bye");
 		item.buyPanel.SetActive(false);
 	}

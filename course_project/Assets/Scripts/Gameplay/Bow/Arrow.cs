@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Arrow : MonoBehaviour
@@ -7,16 +8,26 @@ public class Arrow : MonoBehaviour
     public GameObject explosionEffect;
     public float explosionRadius = 200f;
 
+    string arrowType = "normal"; // normal, explosive, ice, fire, etc.
+
     // Start is called before the first frame update
     void Start()
     {
-       
+        if (GameManager.Instance != null)
+        {
+            string activeArrow = "";
+            bool ok = GameManager.Instance.GetActiveArrow(ref activeArrow);
+            if (ok)
+            {
+                Debug.Log("Active arrow: " + activeArrow);
+                arrowType = activeArrow;
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
-    {
-        
+    {        
     }
 
 
@@ -53,34 +64,63 @@ public class Arrow : MonoBehaviour
         Destroy(gameObject);
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (arrowType == "Arrow_Steel"){
+            Debug.Log("Arrow triggered with: " + other.gameObject.name);
+
+            if (other.gameObject.name == "balloon_up")
+            {
+                Balloon balloon = other.transform.parent.GetComponent<Balloon>();
+                if (balloon != null)
+                {
+                    balloon.TakeDamage(1);
+                    if (balloon.IsDestroyed())
+                    {
+                        balloon.GetRewards();
+                        Debug.Log("Balloon destroyed (trigger)");
+                    }
+                }
+            }
+            else if (other.CompareTag("Floor"))
+            {
+                // Destroy the arrow when it hits the floor
+                Destroy(gameObject);
+            }
+        }
+    }
+
 
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Arrow colided with: " + collision.gameObject.name);
+        if (arrowType != "Arrow_Steel"){
+            Debug.Log("Arrow colided with: " + collision.gameObject.name);
 
-        if (collision.gameObject.name == "balloon_up")
-        {
-            Balloon balloon = collision.gameObject.transform.parent.GetComponent<Balloon>();
-            if (balloon != null)
+            if (collision.gameObject.name == "balloon_up")
             {
-                Debug.Log("Es balloon");
-                balloon.TakeDamage(1); // Ver cuanto daño hace la flecha
-				if (balloon.IsDestroyed())
-				{
-					balloon.GetRewards();
-					Debug.Log("Balloon destroyed");
-				}
-			}
+                Balloon balloon = collision.gameObject.transform.parent.GetComponent<Balloon>();
+                if (balloon != null)
+                {
+                    Debug.Log("Es balloon");
+                    balloon.TakeDamage(1); 
+                    if (balloon.IsDestroyed())
+                    {
+                        balloon.GetRewards();
+                        Debug.Log("Balloon destroyed");
+                    }
+                }
 
-            //Explode(collision.contacts[0].point);
-            
-
+                if (arrowType == "Arrow_Explosion")
+                {
+                    Explode(collision.contacts[0].point);
+                }
+                
+            }
+            else if (collision.gameObject.CompareTag("Floor"))
+            {
+                // Destroy the arrow when it hits the floor
+                Destroy(gameObject);
+            }
         }
-        else if (collision.gameObject.CompareTag("Floor"))
-        {
-            // Destroy the arrow when it hits the floor
-            Destroy(gameObject);
-        }
-    
     }
 }
