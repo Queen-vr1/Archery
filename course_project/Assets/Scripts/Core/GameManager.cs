@@ -10,8 +10,10 @@ public class GameManager : MonoBehaviour
     public GameState CurrentState { get; private set; } = GameState.MainMenu;
     public HandicapType CurrentHandicap { get; private set; } = HandicapType.None;
     public HandicapState HandicapState { get; private set; } = new HandicapState();
+	public UpgradeType CurrentUpgrade { get; private set; } = UpgradeType.None;
+	public UpgradeState UpgradeState { get; private set; } = new UpgradeState();
 
-    public int CurrentLevel { get; private set; } = 1;
+	public int CurrentLevel { get; private set; } = 1;
     public int Money { get; private set; } = 0;
     public int ChallengesCompleted { get; private set; } = 0;
     
@@ -95,7 +97,8 @@ public class GameManager : MonoBehaviour
         itemsBought.Add(item);
         Debug.Log($"ShopRegister: Item added: {item}");
 
-    }
+		UpgradeState.Apply((UpgradeType)System.Enum.Parse(typeof(UpgradeType), item));
+	}
 
     public void EquipArrow(string arrow)
     {

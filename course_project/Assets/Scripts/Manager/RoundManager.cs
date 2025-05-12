@@ -34,10 +34,14 @@ public class RoundManager : MonoBehaviour
             spawmerBalloon = GetComponent<SpawmerBalloon>();
         }
         int penaltyBalloons = GameManager.Instance.HandicapState.FewerBalloons;
-        float penaltySize = GameManager.Instance.HandicapState.SizePenalty;
-        
-        spawmerBalloon.initializateAndSpawn(penaltyBalloons, penaltySize);
-    }
+		int upgradeBalloons = GameManager.Instance.UpgradeState.Add_Balloon;
+		float penaltySize = GameManager.Instance.HandicapState.SizePenalty;
+		float upgradeSize = GameManager.Instance.UpgradeState.Balloon_Size;
+		Debug.Log($"PenaltyBalloons: {penaltyBalloons}, UpgradeBalloons: {upgradeBalloons}");
+		Debug.Log($"PenaltySize: {penaltySize}, UpgradeSize: {upgradeSize}");
+
+		spawmerBalloon.initializateAndSpawn(penaltyBalloons - upgradeBalloons, penaltySize - upgradeSize);
+	}
 
     public void StartRound()
     {
@@ -47,18 +51,20 @@ public class RoundManager : MonoBehaviour
 
         roundActive = true;
 
-		//if (GameManager.Instance.CurrentLevel == 1)
 		if (GameManager.Instance.CurrentLevel % 5 == 0)
 		{
 			ChallengeManager.Instance.StartChallenge();
 		}
 
-        timeRemaining = roundDuration - GameManager.Instance.HandicapState.LessTime;
-        if (timeRemaining < 10)
+        timeRemaining = roundDuration - GameManager.Instance.HandicapState.LessTime + GameManager.Instance.UpgradeState.Time;
+		if (timeRemaining < 10)
         {
             timeRemaining = 10;
         }
 		roundMoney = 0;
+
+		ScoreManager.Instance.AddPoints(GameManager.Instance.UpgradeState.Init_Points);
+		ScoreManager.Instance.SetMultiplier(GameManager.Instance.UpgradeState.Power_Up);
 
 		//GameManager.Instance.SetState(GameState.Playing);
 		StartCoroutine(RunRound());
@@ -78,10 +84,11 @@ public class RoundManager : MonoBehaviour
     private void EndRound()
     {
         roundActive = false;
-        //int score = ScoreManager.Instance.TotalPoints;
+		GameManager.Instance.itemsBought.Clear();
+		//int score = ScoreManager.Instance.TotalPoints;
 
-        //if (score >= currentTarget)
-        if (true)
+		//if (score >= currentTarget)
+		if (true)
         {
 			//Debug.Log($"✅ Ronda superada con {score}/{currentTarget} puntos");
 			if (GameManager.Instance == null)

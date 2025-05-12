@@ -45,12 +45,16 @@ public class ShopItem : MonoBehaviour
                 input.text = infoText + "\n" + "Lvl: " + lvl.ToString();
             }
 
-            if (input.gameObject.name == "RetroText")
+            if (input.gameObject.name == "RetroText" && bought)
             {
                 input.text = "Item Bought";
-            }
+			}
+			else if (input.gameObject.name == "RetroText" && !bought)
+			{
+				input.text = "Item Not Bought";
+			}
 
-            if (input.gameObject.name == "ConfText")
+			if (input.gameObject.name == "ConfText")
             {
                 input.text = "Buy This Item?";
             } 
