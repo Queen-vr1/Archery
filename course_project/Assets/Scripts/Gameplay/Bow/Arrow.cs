@@ -8,6 +8,9 @@ public class Arrow : MonoBehaviour
     public GameObject explosionEffect;
     public float explosionRadius = 200f;
 
+    public AudioSource failSound;
+    public bool hasHit = false;
+
     string arrowType = "normal"; // normal, explosive, ice, fire, etc.
 
     // Start is called before the first frame update
@@ -79,13 +82,19 @@ public class Arrow : MonoBehaviour
                     {
                         balloon.GetRewards();
                         Debug.Log("Balloon destroyed (trigger)");
+                        hasHit = true;
                     }
                 }
             }
             else if (other.CompareTag("Floor"))
             {
                 // Destroy the arrow when it hits the floor
+                if (!hasHit)
+                {
+                    failSound.Play();
+                }
                 Destroy(gameObject);
+               
             }
         }
     }
@@ -119,7 +128,9 @@ public class Arrow : MonoBehaviour
             else if (collision.gameObject.CompareTag("Floor"))
             {
                 // Destroy the arrow when it hits the floor
+                failSound.Play();
                 Destroy(gameObject);
+                
             }
         }
     }
