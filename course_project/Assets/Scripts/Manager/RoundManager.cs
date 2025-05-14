@@ -16,7 +16,8 @@ public class RoundManager : MonoBehaviour
 
     public GameObject portal2level;
     public GameObject portal2shop;
-    public Transform head;
+	public GameObject portalHome;
+	public Transform head;
     public XROrigin xrOrigin;
     public float spawnDistance = 2f;
     public bool isFinalLevel = false;
@@ -137,9 +138,18 @@ public class RoundManager : MonoBehaviour
         }
         else
         {
-            //Debug.Log($"❌ Ronda fallida: {score}/{currentTarget} puntos");
-            GameManager.Instance.SetState(GameState.GameOver);
-        }
+			PortalTeleport portalTeleporterHome = portalHome.GetComponent<PortalTeleport>();
+			if (portalTeleporterHome != null)
+			{
+				portalTeleporterHome.Activate(head, spawnDistance, GameState.MainMenu, -1f, -20f);
+			}
+			else
+			{
+				Debug.LogError("El portal no tiene el componente PortalTeleport.");
+			}
+			//Debug.Log($"❌ Ronda fallida: {score}/{currentTarget} puntos");
+			// GameManager.Instance.SetState(GameState.GameOver);
+		}
     }
 
     public int GetTargetScore()
