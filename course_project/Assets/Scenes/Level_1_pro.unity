@@ -10597,6 +10597,7 @@ MonoBehaviour:
   multiplierText: {fileID: 7584926215018217839}
   challengeText: {fileID: 1264420703}
   arrowCounter: {fileID: 0}
+  targetPointsText: {fileID: 0}
 --- !u!4 &2007432771
 Transform:
   m_ObjectHideFlags: 0

@@ -12,12 +12,14 @@ public class UIManager : MonoBehaviour
 	public TextMeshProUGUI multiplierText;
 	public TextMeshProUGUI challengeText;
 	public TextMeshProUGUI arrowCounter;
+	public TextMeshProUGUI targetPointsText;
 
 	private int lastLevel = -1;
 	private int lastMoney = -1;
 	private int lastPoints = -1;
 	private float lastMultiplier = -1f;
 	private int lastArrowCount = -1;
+	private int lastTarget = -1;
 	private Color originalTimeColor;
 
 	private float animationTime = 0.5f;
@@ -84,6 +86,14 @@ public class UIManager : MonoBehaviour
 			else
 			{
 				timeText.color = originalTimeColor;
+			}
+
+			int target = RoundManagerInstance().GetTargetScore();
+			if (target != lastTarget)
+			{
+				targetPointsText.text = $"{target}";
+				AnimateText(targetPointsText);
+				lastTarget = target;
 			}
 		}
 
