@@ -87,18 +87,18 @@ public class UIManager : MonoBehaviour
 				if (!clockSound.isPlaying)
 				{
 					clockSound.Play();
+				} else if (time <= 0f)
+				{
+					clockSound.Stop();
 				}
 				timeText.color = new Color(0.6f, 0f, 0f);
-			}
-			if (time == 0)
-			{
-				clockSound.Stop();
 			}
 			else
 			{
 				timeText.color = originalTimeColor;
 			}
 
+			
 			int target = RoundManagerInstance().GetTargetScore();
 			if (target != lastTarget)
 			{
