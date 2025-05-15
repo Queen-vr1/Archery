@@ -71,7 +71,11 @@ public class ArrowItem : ShopItem
                 input.text = "Equip This Arrow?";
             } 
 
-            if (input.gameObject.name == "RetroText")
+            if (input.gameObject.name == "RetroText" && notEnoughMoney)
+            {
+                input.text = "Not enough coins";
+            }
+            else if (input.gameObject.name == "RetroText")
             {
                 input.text = "Item Equipped";
             }

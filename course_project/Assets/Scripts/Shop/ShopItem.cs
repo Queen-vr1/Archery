@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using TMPro;
+using Oculus.Platform;
 
 
 public class ShopItem : MonoBehaviour
@@ -16,12 +17,14 @@ public class ShopItem : MonoBehaviour
 
     public bool bought = false;
     public bool stackable = true;
+    
+    protected bool notEnoughMoney = false;
 
     public virtual void Buy()
     {
         Debug.Log($"ShopItem Bought: {name}");
-        GameManager.Instance.RegisterItem(name); 
-        GameManager.Instance.RemoveMoney(price); 
+        GameManager.Instance.RegisterItem(name);
+        GameManager.Instance.RemoveMoney(price);
     }
 
     public virtual void Update()
@@ -45,14 +48,18 @@ public class ShopItem : MonoBehaviour
                 input.text = infoText + "\n" + "Lvl: " + lvl.ToString();
             }
 
-            if (input.gameObject.name == "RetroText" && bought)
+            if (input.gameObject.name == "RetroText" && notEnoughMoney)
+            {
+                input.text = "Not enough coins";
+            }
+            else if (input.gameObject.name == "RetroText" && bought)
             {
                 input.text = "Item Bought";
-			}
-			else if (input.gameObject.name == "RetroText" && !bought)
-			{
-				input.text = "Item Not Bought";
-			}
+            }
+            else if (input.gameObject.name == "RetroText" && !bought)
+            {
+                input.text = "Item Not Bought";
+            }
 
 			if (input.gameObject.name == "ConfText")
             {
@@ -99,15 +106,7 @@ public class ShopItem : MonoBehaviour
 
     public virtual void SetPriceError()
     {
-        TextMeshProUGUI[] inputs = GetComponentsInChildren<TextMeshProUGUI>(true);
-       
-        foreach (var input in inputs)
-        {
-            if (input.gameObject.name == "RetroText")
-            {
-                input.text = "Not enough coins";
-            }
-        }
+        notEnoughMoney = true;
     }
 
     public virtual void SetStackError()
