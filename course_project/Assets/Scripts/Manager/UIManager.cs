@@ -25,6 +25,8 @@ public class UIManager : MonoBehaviour
 	private float animationTime = 0.5f;
 	private float scale = 1.2f;
 
+	public AudioSource clockSound;
+
 	private void Start()
 	{
 		if (timeText != null)
@@ -81,6 +83,10 @@ public class UIManager : MonoBehaviour
 
 			if (time <= 10f)
 			{
+				if (!clockSound.isPlaying)
+				{
+					clockSound.Play();
+				}
 				timeText.color = new Color(0.6f, 0f, 0f);
 			}
 			else
