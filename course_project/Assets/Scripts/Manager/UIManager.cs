@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting.Dependencies.Sqlite;
 
 public class UIManager : MonoBehaviour
 {
@@ -88,6 +89,10 @@ public class UIManager : MonoBehaviour
 					clockSound.Play();
 				}
 				timeText.color = new Color(0.6f, 0f, 0f);
+			}
+			if (time == 0)
+			{
+				clockSound.Stop();
 			}
 			else
 			{
