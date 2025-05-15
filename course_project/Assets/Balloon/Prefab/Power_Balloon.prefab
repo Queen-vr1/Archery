@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df343bc3750065fbcb720e7af211b115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleFx: {fileID: 0}
+  particleFx: {fileID: 4441994906087081280}
   audioSource: {fileID: 5875050293988870784}
   rend: {fileID: 114174195877294877}
   newTexture: {fileID: 2800000, guid: a2630046eebe6f84b879e83844b3b539, type: 3}
@@ -515,6 +515,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c27f6103c8348844a3cc636de15052a, type: 3}
+--- !u!198 &4441994906087081280 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8919484260529707530, guid: 2c27f6103c8348844a3cc636de15052a, type: 3}
+  m_PrefabInstance: {fileID: 5074850311209082698}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4441994906087081283 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8919484260529707529, guid: 2c27f6103c8348844a3cc636de15052a, type: 3}
