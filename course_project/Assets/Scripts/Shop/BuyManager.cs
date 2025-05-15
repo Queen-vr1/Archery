@@ -71,7 +71,6 @@ public class BuyManager : MonoBehaviour
 			if (shopItem.type != "Arrow")
 			{
 				buySound.Play();
-				item.itemPrefab.SetActive(false);
 			}
 		}
         else
@@ -94,8 +93,13 @@ public class BuyManager : MonoBehaviour
 
 	IEnumerator HideRetroPanel(Item item)
 	{
-		yield return new WaitForSeconds(2f);
+		yield return new WaitForSeconds(1f);
 		item.retroPanel.SetActive(false);
+		ShopItem shopItem = item.itemPrefab.GetComponent<ShopItem>();
+		if (shopItem.type != "Arrow")
+		{
+			item.itemPrefab.SetActive(false);
+		}
 	}
 	
 }

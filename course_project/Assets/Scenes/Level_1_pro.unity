@@ -9728,7 +9728,7 @@ MonoBehaviour:
   portal2level: {fileID: 1076174351}
   portal2shop: {fileID: 237692347}
   portalHome: {fileID: 1467423615}
-  head: {fileID: 139697174}
+  head: {fileID: 1793120674}
   xrOrigin: {fileID: 1849597706}
   spawnDistance: 3
   isFinalLevel: 0
