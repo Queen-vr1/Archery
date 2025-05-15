@@ -18,6 +18,10 @@ public class Bow : MonoBehaviour
     private BowState currentState = BowState.notArrow;
     private Rigidbody rb;
     public GameObject dominantController, notDominantController;
+    public AudioSource bowSound;
+
+    // bowSound.Play(); endiende el sonido 
+    // bowSound.Stop(); apaga el sonido
 
     // Start is called before the first frame update
     void Start()
