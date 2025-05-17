@@ -51,7 +51,7 @@ public class BuyManager : MonoBehaviour
 		{
 			shopItem.SetStackError();
 			item.retroPanel.SetActive(true);
-			StartCoroutine(HideRetroPanel(item));
+			StartCoroutine(HideRetroPanel(item, false));
 			return;
 		}
 		
@@ -61,6 +61,7 @@ public class BuyManager : MonoBehaviour
 
 	void OnYesButtonClicked(Item item)
 	{
+		bool bought = false;
 		Debug.Log("Yes button clicked.");
 		clickSound.Play();
 		ShopItem shopItem = item.itemPrefab.GetComponent<ShopItem>();
@@ -68,6 +69,7 @@ public class BuyManager : MonoBehaviour
         {
             Debug.Log("Shop Manager: Buying item.");
             shopItem.Buy();
+			bought = true;
 			if (shopItem.type != "Arrow")
 			{
 				buySound.Play();
@@ -81,7 +83,7 @@ public class BuyManager : MonoBehaviour
 		item.buyPanel.SetActive(false);
 
 		item.retroPanel.SetActive(true);
-		StartCoroutine(HideRetroPanel(item));
+		StartCoroutine(HideRetroPanel(item, bought));
 	}
 
 	void OnNoButtonClicked(Item item)
@@ -91,12 +93,12 @@ public class BuyManager : MonoBehaviour
 		item.buyPanel.SetActive(false);
 	}
 
-	IEnumerator HideRetroPanel(Item item)
+	IEnumerator HideRetroPanel(Item item, bool bought)
 	{
 		yield return new WaitForSeconds(1f);
 		item.retroPanel.SetActive(false);
 		ShopItem shopItem = item.itemPrefab.GetComponent<ShopItem>();
-		if (shopItem.type != "Arrow")
+		if (shopItem.type != "Arrow" && bought)
 		{
 			item.itemPrefab.SetActive(false);
 		}
