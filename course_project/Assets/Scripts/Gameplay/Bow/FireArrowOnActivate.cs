@@ -68,9 +68,9 @@ public class FireArrowFromRightHandGrip : MonoBehaviour
                 {
                     //float speedFactor = pullDistance / maxPullDistance;
                     float speedFactor = Mathf.Pow(tensionZ / maxPullDistance, 2f);
-                    float finalSpeed = speedFactor * maxArrowSpeed;
+                    float finalSpeed = speedFactor * (maxArrowSpeed + GameManager.Instance.UpgradeState.Arrow_Speed);
 
-                    currentArrow.transform.parent = null;
+					currentArrow.transform.parent = null;
                     XRGrabInteractable grabInteractable = currentArrow.GetComponent<XRGrabInteractable>();
                     if (grabInteractable != null && grabInteractable.selectingInteractor == rightHandInteractor)
                     {

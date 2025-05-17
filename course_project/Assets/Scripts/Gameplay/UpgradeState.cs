@@ -6,7 +6,8 @@ public class UpgradeState
     public int Add_Balloon { get; private set; } = 0;
     public int Init_Points { get; private set; } = 0;
     public float Power_Up { get; private set; } = 1f;
-	public float Balloon_Size { get; private set; } = 0;
+	public float Balloon_Size { get; private set; } = 0f;
+	public float Arrow_Speed { get; private set; } = 0f;
 
 	public void Apply (UpgradeType type)
 	{
@@ -36,6 +37,11 @@ public class UpgradeState
 				Balloon_Size += 0.05f;
 				Debug.Log("Balloon_Size: " + Balloon_Size);
 				break;
+
+			case UpgradeType.Arrow_Speed:
+				Arrow_Speed += 5;
+				Debug.Log("Arrow_Speed: " + Arrow_Speed);
+				break;
 		}
 	}
 
@@ -44,7 +50,8 @@ public class UpgradeState
 		Time = 0;
 		Add_Balloon = 0;
 		Init_Points = 0;
-		Power_Up = 0;
+		Power_Up = 1;
 		Balloon_Size = 0;
+		Arrow_Speed = 0;
 	}
 }

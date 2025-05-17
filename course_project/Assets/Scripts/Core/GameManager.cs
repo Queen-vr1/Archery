@@ -97,7 +97,10 @@ public class GameManager : MonoBehaviour
         itemsBought.Add(item);
         Debug.Log($"ShopRegister: Item added: {item}");
 
-		UpgradeState.Apply((UpgradeType)System.Enum.Parse(typeof(UpgradeType), item));
+		if (!item.StartsWith("Arrow_"))
+		{
+			UpgradeState.Apply((UpgradeType)System.Enum.Parse(typeof(UpgradeType), item));
+		}
 	}
 
     public void EquipArrow(string arrow)

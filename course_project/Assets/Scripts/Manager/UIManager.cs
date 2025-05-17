@@ -65,13 +65,13 @@ public class UIManager : MonoBehaviour
 			}
 
 			
-			int arrowCount = GameManager.Instance.ArrowCount; // cambiar esto si ponemos el contador en otro sitio :)
-			if (arrowCount != lastArrowCount)
-			{
-				arrowCounter.text = $"{arrowCount}";
-				AnimateText(arrowCounter);
-				lastArrowCount = arrowCount;
-			}
+			//int arrowCount = GameManager.Instance.ArrowCount; // cambiar esto si ponemos el contador en otro sitio :)
+			//if (arrowCount != lastArrowCount)
+			//{
+				//arrowCounter.text = $"{arrowCount}";
+				//AnimateText(arrowCounter);
+				//lastArrowCount = arrowCount;
+			//}
 			
 		}
 

@@ -5,5 +5,6 @@ public enum UpgradeType
     Add_Balloon,
     Init_Points,
     Power_Up,
-    Balloon_Size
+    Balloon_Size,
+	Arrow_Speed
 }
