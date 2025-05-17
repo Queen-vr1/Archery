@@ -69,7 +69,40 @@ public class Arrow : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (arrowType == "Arrow_Steel"){
+        if (arrowType != "Arrow_Steel")
+        {
+            Debug.Log("Arrow colided with: " + other.gameObject.name);
+
+            if (other.gameObject.name == "balloon_up")
+            {
+                Balloon balloon = other.gameObject.transform.parent.GetComponent<Balloon>();
+                if (balloon != null)
+                {
+                    Debug.Log("Es balloon");
+                    balloon.TakeDamage(1); 
+                    if (balloon.IsDestroyed())
+                    {
+                        balloon.GetRewards();
+                        Debug.Log("Balloon destroyed");
+                    }
+                }
+
+                if (arrowType == "Arrow_Explosion")
+                {
+                    Explode(other.gameObject.transform.Find("balloon_up").transform.position);
+                }
+                
+            }
+            else if (other.gameObject.CompareTag("Floor"))
+            {
+                // Destroy the arrow when it hits the floor
+                failSound.Play();
+                Destroy(gameObject);
+                
+            }
+        }
+        else
+        {
             Debug.Log("Arrow triggered with: " + other.gameObject.name);
 
             if (other.gameObject.name == "balloon_up")
@@ -100,38 +133,8 @@ public class Arrow : MonoBehaviour
     }
 
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (arrowType != "Arrow_Steel"){
-            Debug.Log("Arrow colided with: " + collision.gameObject.name);
-
-            if (collision.gameObject.name == "balloon_up")
-            {
-                Balloon balloon = collision.gameObject.transform.parent.GetComponent<Balloon>();
-                if (balloon != null)
-                {
-                    Debug.Log("Es balloon");
-                    balloon.TakeDamage(1); 
-                    if (balloon.IsDestroyed())
-                    {
-                        balloon.GetRewards();
-                        Debug.Log("Balloon destroyed");
-                    }
-                }
-
-                if (arrowType == "Arrow_Explosion")
-                {
-                    Explode(collision.contacts[0].point);
-                }
-                
-            }
-            else if (collision.gameObject.CompareTag("Floor"))
-            {
-                // Destroy the arrow when it hits the floor
-                failSound.Play();
-                Destroy(gameObject);
-                
-            }
-        }
-    }
+    // void OnCollisionEnter(Collision collision)
+    // {
+        
+    // }
 }

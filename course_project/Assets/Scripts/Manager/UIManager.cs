@@ -64,7 +64,7 @@ public class UIManager : MonoBehaviour
 				lastMoney = GameManager.Instance.Money;
 			}
 
-			/*
+			
 			int arrowCount = GameManager.Instance.ArrowCount; // cambiar esto si ponemos el contador en otro sitio :)
 			if (arrowCount != lastArrowCount)
 			{
@@ -72,7 +72,7 @@ public class UIManager : MonoBehaviour
 				AnimateText(arrowCounter);
 				lastArrowCount = arrowCount;
 			}
-			*/
+			
 		}
 
 		if (RoundManagerInstance() != null)

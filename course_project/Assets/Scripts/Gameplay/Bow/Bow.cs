@@ -19,6 +19,7 @@ public class Bow : MonoBehaviour
     private Rigidbody rb;
     public GameObject dominantController, notDominantController;
     public AudioSource bowSound;
+    public float mult = 30f;
 
     // bowSound.Play(); endiende el sonido 
     // bowSound.Stop(); apaga el sonido
@@ -59,7 +60,6 @@ public class Bow : MonoBehaviour
         else if (OVRInput.GetUp(notDominant) && arrow != null)
         {
 
-            float mult = 10f;
             Vector3 direction = Camera.main.transform.forward;
             // give a force only if the arrow is ready to shoot
             // set arrow speed direction to the camera forward
