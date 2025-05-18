@@ -6301,7 +6301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portal: {fileID: 954973622}
-  head: {fileID: 0}
+  head: {fileID: 397989245}
   spawnDistance: 2
   clickSound: {fileID: 1745931537}
 --- !u!1001 &2062502858

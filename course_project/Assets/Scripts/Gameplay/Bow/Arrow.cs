@@ -59,7 +59,7 @@ public class Arrow : MonoBehaviour
                     balloon.TakeDamage(1);
                     if (balloon.IsDestroyed())
                     {
-                        // balloon.GetRewards();
+                        balloon.GetRewards();
                         Debug.Log("Balloon destroyed (area explosion)");
                     }
                 }

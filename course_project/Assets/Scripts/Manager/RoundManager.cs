@@ -86,7 +86,6 @@ public class RoundManager : MonoBehaviour
     private void EndRound()
     {
         roundActive = false;
-		GameManager.Instance.itemsBought.Clear();
 
 		if (ScoreManager.Instance.TotalPoints >= currentTarget)
 		// if (true)

@@ -7,7 +7,8 @@ public enum RewardCategory
 
 public enum RewardModifier
 {
-    Flat,       
-    Multiplier, 
-    Power       // pow 
+    Flat,
+    Multiplier,
+    Power,
+    FlatNegative
 }

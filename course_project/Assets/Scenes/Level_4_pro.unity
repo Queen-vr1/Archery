@@ -1698,7 +1698,7 @@ MonoBehaviour:
   balloonCount: 100
   balloonSize: {x: 0.52, y: 0.52, z: 1}
   minDistance: 3
-  minHeight: 4
+  minHeight: 6
   maxHeight: 20
 --- !u!4 &287939031
 Transform:

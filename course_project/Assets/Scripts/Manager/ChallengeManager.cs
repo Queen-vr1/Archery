@@ -56,26 +56,26 @@ public class ChallengeManager : MonoBehaviour
 				break;
 		}
 
-		// buscar un objeto en la escena llamado ChallengeText
-		GameObject challengeTextObject = GameObject.Find("ChallengeText");
-		if (challengeTextObject != null)
-		{
-			// obtener el componente TextMeshProUGUI
-			challengeText = challengeTextObject.GetComponent<TextMeshProUGUI>();
-			if (challengeText != null)
-			{
-				challengeText.text = "New Challenge:\n" + GetChallengeName();
-				StartCoroutine("WaitAndClearText");
-			}
-			else
-			{
-				Debug.LogError("ChallengeText component not found");
-			}
-		}
-		else
-		{
-			Debug.LogError("ChallengeText object not found");
-		}
+		// // buscar un objeto en la escena llamado ChallengeText
+		// GameObject challengeTextObject = GameObject.Find("ChallengeText");
+		// if (challengeTextObject != null)
+		// {
+		// 	// obtener el componente TextMeshProUGUI
+		// 	challengeText = challengeTextObject.GetComponent<TextMeshProUGUI>();
+		// 	if (challengeText != null)
+		// 	{
+		// 		challengeText.text = "New Challenge:\n" + GetChallengeName();
+		// 		StartCoroutine("WaitAndClearText");
+		// 	}
+		// 	else
+		// 	{
+		// 		Debug.LogError("ChallengeText component not found");
+		// 	}
+		// }
+		// else
+		// {
+		// 	Debug.LogError("ChallengeText object not found");
+		// }
 
 	}
 

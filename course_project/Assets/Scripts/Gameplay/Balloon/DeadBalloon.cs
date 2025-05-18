@@ -34,8 +34,8 @@ public class DeadBalloon : Balloon
         rewards.Add(new RewardData
         {
             category = RewardCategory.Points,
-            modifier = RewardModifier.Flat,
-			value = -5f
+            modifier = RewardModifier.FlatNegative,
+			value = 20f
         });
     }
 

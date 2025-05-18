@@ -25,6 +25,12 @@ public class ScoreManager : MonoBehaviour
         Debug.Log($"+{finalPoints} puntos (x{Multiplier})");
     }
 
+    public void AddFlatPoints(int points)
+    {
+        TotalPoints = Mathf.Max(0, TotalPoints + points);
+        Debug.Log($"{points} puntos planos");
+    }
+
     public void SetMultiplier(float newMultiplier)
     {
         Multiplier = newMultiplier;

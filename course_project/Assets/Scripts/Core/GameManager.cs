@@ -122,6 +122,7 @@ public class GameManager : MonoBehaviour
         CurrentLevel = 1;
         Money = 0;
         ChallengesCompleted = 0;
+		itemsBought.Clear();
     }
 
     

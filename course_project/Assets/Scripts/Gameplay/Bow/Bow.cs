@@ -41,7 +41,7 @@ public class Bow : MonoBehaviour
         // Debug.Log ("distance to plane: " + DistanceToPlane(notDominantController.transform.position, Camera.main.transform.position, Camera.main.transform.forward));
         // Debug.Log ("angle: " + Vector3.Angle(Vector3.down, dominantController.transform.forward));
 
-        if (OVRInput.GetDown(notDominant) && currentState == BowState.notArrow/* && roundManager.timeRemaining > 0*/
+        if (OVRInput.GetDown(notDominant) && currentState == BowState.notArrow && roundManager.timeRemaining > 0
             && DistanceToPlane(dominantController.transform.position, Camera.main.transform.position, Camera.main.transform.forward) < 0.1f
             && GameManager.Instance.ArrowDown())
         {
@@ -70,7 +70,7 @@ public class Bow : MonoBehaviour
             if (currentState == BowState.arrowReady)
             {
                 float distance = Vector3.Distance(dominantController.transform.position, notDominantController.transform.position);
-                rb.velocity = arrow.transform.forward * distance * (mult + GameManager.Instance.UpgradeState.Arrow_Speed);
+                rb.velocity = arrow.transform.forward * distance * (mult + GameManager.Instance.UpgradeState.Speed_Arrow);
                 arrow.GetComponentInChildren<Arrow>().StartCoroutine("DestroyAfter20");
                 arrow.transform.parent = null;
                 Debug.Log("Arrow shot");

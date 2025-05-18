@@ -6,5 +6,5 @@ public enum UpgradeType
     Init_Points,
     Power_Up,
     Balloon_Size,
-	Arrow_Speed
+	Speed_Arrow
 }

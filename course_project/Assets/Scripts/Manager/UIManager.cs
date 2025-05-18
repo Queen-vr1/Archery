@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
 	private int lastArrowCount = -1;
 	private int lastTarget = -1;
 	private Color originalTimeColor;
-	private int elapsedTime = 0;
+	private float elapsedTime = 0f;
 
 	private float animationTime = 0.5f;
 	private float scale = 1.2f;
@@ -35,6 +35,7 @@ public class UIManager : MonoBehaviour
 		{
 			originalTimeColor = timeText.color;
 		}
+		elapsedTime = 0;
 
 		/*
 		if (ChallengeManager.Instance != null && ChallengeManager.Instance.challengeActive)
@@ -104,15 +105,19 @@ public class UIManager : MonoBehaviour
 			{
 				if (challengeText != null)
 				{
+					string challengeName = ChallengeManager.Instance.GetChallengeName();
 					challengeText.text = $"Challenge!\n{challengeName}";
-					challengeText.gameObject.SetActive(true);
 					elapsedTime += Time.deltaTime;
-					if (elapsedTime >= 10f)
+					if (elapsedTime >= 5f)
 					{
 						challengeText.gameObject.SetActive(false);
-						elapsedTime = 0;
+					}
+					else
+					{
+						challengeText.gameObject.SetActive(true);
 					}
 				}
+			}
 			else
 			{
 				if (challengeText != null)
