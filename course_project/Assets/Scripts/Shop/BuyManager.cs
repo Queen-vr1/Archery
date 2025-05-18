@@ -65,7 +65,7 @@ public class BuyManager : MonoBehaviour
 		Debug.Log("Yes button clicked.");
 		clickSound.Play();
 		ShopItem shopItem = item.itemPrefab.GetComponent<ShopItem>();
-		if (GameManager.Instance.Money >= shopItem.price)
+		if (GameManager.Instance.Money >= shopItem.price || shopItem.bought && shopItem.type == "Arrow")
         {
             Debug.Log("Shop Manager: Buying item.");
             shopItem.Buy();
