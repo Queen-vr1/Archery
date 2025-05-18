@@ -84,6 +84,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 812970381256477324, guid: cff4c024d20095a458a66e6e0d47bf1b, type: 3}
+      propertyPath: explosionEffect
+      value: 
+      objectReference: {fileID: 358637981425055526, guid: 8eb503696b886e04faff8fc0f480d473, type: 3}
+    - target: {fileID: 812970381256477324, guid: cff4c024d20095a458a66e6e0d47bf1b, type: 3}
+      propertyPath: explosionRadius
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7506483986765130138, guid: cff4c024d20095a458a66e6e0d47bf1b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8803315522988191369, guid: cff4c024d20095a458a66e6e0d47bf1b, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 1792
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

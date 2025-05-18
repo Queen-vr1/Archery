@@ -35,7 +35,7 @@ public class PowerBalloon : Balloon
         {
             category = RewardCategory.Points,
             modifier = RewardModifier.Multiplier,
-            value = 1.2f
+            value = 1f
         });
     }
 

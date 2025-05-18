@@ -6,7 +6,7 @@ public class Points : MonoBehaviour
     public TextMeshProUGUI pointsText;
     public TextMeshProUGUI successText;
 
-    public int maxPoints = 30;
+    public int maxPoints = 10;
     private int points = 0;
 
     public static Points instance;

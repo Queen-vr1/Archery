@@ -43,7 +43,7 @@ public class ArmoredBalloon : Balloon
 		{
 			category = RewardCategory.Points,
 			modifier = RewardModifier.Multiplier,
-			value = 1.2f
+			value = 1.5f
 		});
 	}
 

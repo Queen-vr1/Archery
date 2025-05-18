@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 	public int CurrentLevel { get; private set; } = 1;
     public int Money { get; private set; } = 0;
     public int ChallengesCompleted { get; private set; } = 0;
+    public int Quiver { get; private set; } = 10;
     
     // Things for the shop
     public List<string> itemsBought = new List<string>();
@@ -35,7 +36,7 @@ public class GameManager : MonoBehaviour
 
     public void GenerateHandicap()
     {
-        if (CurrentLevel >= 1)
+        if (CurrentLevel >= 4)
         {
             // Enum.GetValues devuelve todos los valores, excluye "None"
             var values = System.Enum.GetValues(typeof(HandicapType)).Cast<HandicapType>().Where(h => h != HandicapType.None).ToArray();
@@ -53,6 +54,7 @@ public class GameManager : MonoBehaviour
     {
         CurrentState = newState;
         Debug.Log("Estado del juego: " + newState);
+        if (newState == GameState.MainMenu) Reset();
         SceneController.Instance.LoadSceneForState(newState);
     }
 
@@ -84,8 +86,39 @@ public class GameManager : MonoBehaviour
         CurrentLevel = 1;
     }
 
-    public void ResetProgress()
+    public void ResetQuiver()
     {
+        Debug.Log("Quiver reset to 10 arrows.");
+        Quiver = 10;
+    }
+
+    public void ArrowUp()
+    {
+        Debug.Log("Arrow added to quiver.");
+        Quiver++;
+    }
+
+    public bool ArrowDown()
+    {
+        Debug.Log("Arrow removed from quiver.");
+        if (Quiver <= 0) return false;
+        Quiver--;
+        return true;
+    }
+
+    public void ArrowDownWithNoCheck()
+    {
+        Debug.Log("Arrow removed from quiver.");
+        Quiver--;
+    }
+
+    public void Reset()
+    {
+        CurrentHandicap = HandicapType.None;
+        CurrentUpgrade = UpgradeType.None;
+        HandicapState.Reset();
+        UpgradeState.Reset();
+        itemsBought.Clear();
         CurrentLevel = 1;
         Money = 0;
         ChallengesCompleted = 0;

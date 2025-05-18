@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 9500000}
   - component: {fileID: 812970381256477324}
   - component: {fileID: 1439266403591968736}
+  - component: {fileID: 8803315522988191369}
   - component: {fileID: 4234679106485461949}
   - component: {fileID: 7506483986765130138}
   m_Layer: 9
@@ -126,6 +127,7 @@ MonoBehaviour:
   explosionEffect: {fileID: 0}
   explosionRadius: 200
   failSound: {fileID: 8516452577235781037}
+  hasHit: 0
 --- !u!135 &1439266403591968736
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -139,7 +141,7 @@ SphereCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1792
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -147,6 +149,29 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.25
   m_Center: {x: -0.9, y: 0, z: 0}
+--- !u!136 &8803315522988191369
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 1792
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.03
+  m_Height: 2.2185366
+  m_Direction: 0
+  m_Center: {x: -0.024547277, y: 0, z: 0}
 --- !u!54 &4234679106485461949
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -383,7 +408,7 @@ Transform:
   m_GameObject: {fileID: 6253906084877739056}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: -0.5886208, y: 0.40038836, z: -0.07037929}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3.6606236, y: 3.6606245, z: 3.6606245}
   m_ConstrainProportionsScale: 0
   m_Children: []

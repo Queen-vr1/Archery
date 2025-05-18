@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Unity.VisualScripting.Dependencies.Sqlite;
+// using Unity.VisualScripting.Dependencies.Sqlite;
 
 public class UIManager : MonoBehaviour
 {
@@ -65,13 +65,13 @@ public class UIManager : MonoBehaviour
 			}
 
 			
-			//int arrowCount = GameManager.Instance.ArrowCount; // cambiar esto si ponemos el contador en otro sitio :)
-			//if (arrowCount != lastArrowCount)
-			//{
-				//arrowCounter.text = $"{arrowCount}";
-				//AnimateText(arrowCounter);
-				//lastArrowCount = arrowCount;
-			//}
+			int arrowCount = GameManager.Instance.Quiver;
+			if (arrowCount != lastArrowCount)
+			{
+				arrowCounter.text = $"{arrowCount}";
+				AnimateText(arrowCounter);
+				lastArrowCount = arrowCount;
+			}
 			
 		}
 

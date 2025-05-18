@@ -45,9 +45,10 @@ public class SpawmerBalloon : MonoBehaviour
         placedBounds.Clear();
         for (int i = 0; i < count; i++)
         {
+            Debug.Log("Spawning balloon");
             Bounds? validBounds = GetValidBounds();
             if (validBounds.HasValue)
-            {   
+            {
                 Vector3 spawnPos = validBounds.Value.center;
                 GameObject prefab = GetRandomBalloonPrefab();
                 Quaternion randomYRotation = Quaternion.Euler(0, Random.Range(0f, 360f), 0);
@@ -55,12 +56,12 @@ public class SpawmerBalloon : MonoBehaviour
                 balloon.transform.localScale = size;
                 placedBounds.Add(GetFullBounds(balloon));
 
-				// Initialize
-				Balloon b = balloon.GetComponent<Balloon>();
-				if (b != null)
-				{
-					b.Init();
-				}
+                // Initialize
+                Balloon b = balloon.GetComponent<Balloon>();
+                if (b != null)
+                {
+                    b.Init();
+                }
 			}
         }
     }
@@ -83,18 +84,19 @@ public class SpawmerBalloon : MonoBehaviour
 
     Bounds? GetValidBounds()
     {
+        Debug.Log("1");
         List<GameObject> planes = ObtenerObjetosPorTags(new List<string> { "Floor" });
         if (planes.Count == 0) return null;
-
+        Debug.Log("2");
         Bounds floorBounds = GetCombinedFloorBounds(planes);
         int maxAttempts = 100;
-
+        Debug.Log("3");
         for (int i = 0; i < maxAttempts; i++)
         {
             float x = Random.Range(floorBounds.min.x, floorBounds.max.x);
             float z = Random.Range(floorBounds.min.z, floorBounds.max.z);
             float y = Random.Range(minHeight, maxHeight);
-
+            Debug.Log("4");
             Vector3 worldPos = new Vector3(x, y, z);
 
             GameObject temp = Instantiate(balloonTypes[0].prefab, worldPos, Quaternion.identity);
@@ -105,7 +107,7 @@ public class SpawmerBalloon : MonoBehaviour
             if (IsAboveAnyFloor(planes, b) && IsFarFromOthers(b))
                 return b;
         }
-
+        Debug.Log("5");
         return null;
     }
 

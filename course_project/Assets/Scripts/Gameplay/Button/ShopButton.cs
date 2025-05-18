@@ -8,7 +8,6 @@ using System.Collections.Generic;
 
 public class ShopButton : MonoBehaviour
 {
-    public XROrigin xrOrigin;
     public GameObject portal;
 
     public Transform head;

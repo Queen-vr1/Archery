@@ -34,7 +34,7 @@ public static class RewardManager
                 break;
             case RewardModifier.Multiplier:
                 ScoreManager.Instance.SetMultiplier(
-                    ScoreManager.Instance.Multiplier * reward.value);
+                    ScoreManager.Instance.Multiplier + reward.value);
                 break;
             case RewardModifier.Power:
                 ScoreManager.Instance.SetMultiplier(

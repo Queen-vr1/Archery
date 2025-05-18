@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ChallengeManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class ChallengeManager : MonoBehaviour
 	public bool challengeActive { get; private set; } = false;
 	private ChallengeType currentChallenge;
 	private int dsf => GameManager.Instance.ChallengesCompleted;
+	private TextMeshProUGUI challengeText = null;
 
 	private void Awake()
 	{
@@ -53,6 +55,28 @@ public class ChallengeManager : MonoBehaviour
 				ApplyDeadBalloons();
 				break;
 		}
+
+		// buscar un objeto en la escena llamado ChallengeText
+		GameObject challengeTextObject = GameObject.Find("ChallengeText");
+		if (challengeTextObject != null)
+		{
+			// obtener el componente TextMeshProUGUI
+			challengeText = challengeTextObject.GetComponent<TextMeshProUGUI>();
+			if (challengeText != null)
+			{
+				challengeText.text = "New Challenge:\n" + GetChallengeName();
+				StartCoroutine("WaitAndClearText");
+			}
+			else
+			{
+				Debug.LogError("ChallengeText component not found");
+			}
+		}
+		else
+		{
+			Debug.LogError("ChallengeText object not found");
+		}
+
 	}
 
 	public void EndChallenge()
@@ -176,6 +200,19 @@ public class ChallengeManager : MonoBehaviour
 			{
 				Debug.LogError("Prefab not found");
 			}
+		}
+	}
+
+	private IEnumerator WaitAndClearText()
+	{
+		yield return new WaitForSeconds(3f);
+		if (challengeText != null)
+		{
+			challengeText.text = "";
+		}
+		else
+		{
+			Debug.LogError("ChallengeText component not found");
 		}
 	}
 }

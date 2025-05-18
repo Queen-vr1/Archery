@@ -24,12 +24,12 @@ public class UpgradeState
 				break;
 
 			case UpgradeType.Init_Points:
-				Init_Points += 3;
+				Init_Points += 5;
 				Debug.Log("Init_Points: " + Init_Points);
 				break;
 
 			case UpgradeType.Power_Up:
-				Power_Up += 0.5f;
+				Power_Up += 1f;
 				Debug.Log("Power_Up: " + Power_Up);
 				break;
 

@@ -1631,6 +1631,15 @@
             "id": "461bce25-7762-40c5-b639-f190649be6d6",
             "actions": [
                 {
+                    "name": "Select",
+                    "type": "Button",
+                    "id": "a2ca0f87-1575-4bbe-834b-f5d43cc5d09f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Select Value",
                     "type": "Value",
                     "id": "39bbf1ac-21a3-413d-90f6-6dbf6efeaabe",
@@ -1661,7 +1670,7 @@
                     "name": "UI Press",
                     "type": "Button",
                     "id": "65174b45-c2ee-4f90-93bb-fb4084eaaab3",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -1779,22 +1788,11 @@
                 },
                 {
                     "name": "",
-                    "id": "92bb5b8f-bf48-4dab-af05-50a865773895",
-                    "path": "<XRController>{RightHand}/{TriggerButton}",
+                    "id": "333f55ba-d22d-4adc-9dbb-be1c0933ec1b",
+                    "path": "<XRController>{RightHand}/{GripButton}",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Generic XR Controller",
-                    "action": "UI Press",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1652c26e-d835-461f-b46b-55b146fd9bba",
-                    "path": "<MetaAimHand>{RightHand}/indexPressed",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Generic XR Controller",
+                    "groups": ";Generic XR Controller",
                     "action": "UI Press",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -1873,6 +1871,17 @@
                     "processors": "ScaleVector2(x=0),StickDeadzone",
                     "groups": "Generic XR Controller",
                     "action": "Scale Delta",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3b418d4b-8c6f-4575-b896-865412318246",
+                    "path": "<XRController>{RightHand}/{GripButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Generic XR Controller",
+                    "action": "Select",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

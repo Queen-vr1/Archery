@@ -12,7 +12,7 @@ public class HandicapState
         switch (type)
         {
             case HandicapType.HigherTargetScore:
-                TargetPoints += 100f;
+                TargetPoints *= 1.2f;
                 Debug.Log("Handicap TargetPoints: " + TargetPoints);
                 break;
 

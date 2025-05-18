@@ -6,9 +6,9 @@ using Unity.VisualScripting;
 public class RoundManager : MonoBehaviour
 {
     public float roundDuration = 60f;
-    public int baseTargetScore = 30;
+    public int baseTargetScore = 10;
 
-    private float timeRemaining;
+    public float timeRemaining { get; private set; }
     private int currentTarget;
 	private int roundMoney = 0;
 
@@ -18,7 +18,6 @@ public class RoundManager : MonoBehaviour
     public GameObject portal2shop;
 	public GameObject portalHome;
 	public Transform head;
-    public XROrigin xrOrigin;
     public float spawnDistance = 2f;
     public bool isFinalLevel = false;
 
@@ -66,9 +65,11 @@ public class RoundManager : MonoBehaviour
 
 		ScoreManager.Instance.AddPoints(GameManager.Instance.UpgradeState.Init_Points);
 		ScoreManager.Instance.SetMultiplier(GameManager.Instance.UpgradeState.Power_Up);
+        
+        GameManager.Instance.ResetQuiver();
 
 		//GameManager.Instance.SetState(GameState.Playing);
-		StartCoroutine(RunRound());
+        StartCoroutine(RunRound());
     }
 
     private IEnumerator RunRound()
@@ -86,10 +87,9 @@ public class RoundManager : MonoBehaviour
     {
         roundActive = false;
 		GameManager.Instance.itemsBought.Clear();
-		//int score = ScoreManager.Instance.TotalPoints;
 
-		//if (score >= currentTarget)
-		if (true)
+		if (ScoreManager.Instance.TotalPoints >= currentTarget)
+		// if (true)
         {
 			//Debug.Log($"✅ Ronda superada con {score}/{currentTarget} puntos");
 			if (GameManager.Instance == null)

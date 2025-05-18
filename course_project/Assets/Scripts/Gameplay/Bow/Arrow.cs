@@ -1,12 +1,13 @@
 using System;
 using UnityEngine;
+using System.Collections;
 
 public class Arrow : MonoBehaviour
 {
 
     // For the explosive arrow
     public GameObject explosionEffect;
-    public float explosionRadius = 200f;
+    public float explosionRadius = 5f;
 
     public AudioSource failSound;
     public bool hasHit = false;
@@ -30,7 +31,7 @@ public class Arrow : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {        
+    {
     }
 
 
@@ -40,7 +41,8 @@ public class Arrow : MonoBehaviour
         if (explosionEffect != null)
         {
             GameObject fx = Instantiate(explosionEffect, position, Quaternion.identity);
-            fx.transform.localScale = new Vector3(30, 30, 30);
+            // fx.transform.localScale = new Vector3(1, 1, 1);
+            Destroy(fx, 1f);
         }
 
         // Encontrar todos los colliders dentro del radio
@@ -57,7 +59,7 @@ public class Arrow : MonoBehaviour
                     balloon.TakeDamage(1);
                     if (balloon.IsDestroyed())
                     {
-                        balloon.GetRewards();
+                        // balloon.GetRewards();
                         Debug.Log("Balloon destroyed (area explosion)");
                     }
                 }
@@ -69,72 +71,89 @@ public class Arrow : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (arrowType != "Arrow_Steel")
+        Debug.Log("Arrow collided with: " + other.gameObject.name);
+
+        if (other.gameObject.name == "balloon_up")
         {
-            Debug.Log("Arrow colided with: " + other.gameObject.name);
-
-            if (other.gameObject.name == "balloon_up")
+            Balloon balloon = other.gameObject.transform.parent.GetComponent<Balloon>();
+            if (balloon != null)
             {
-                Balloon balloon = other.gameObject.transform.parent.GetComponent<Balloon>();
-                if (balloon != null)
+                Debug.Log("Es balloon");
+                balloon.TakeDamage(1);
+                if (balloon.IsDestroyed())
                 {
-                    Debug.Log("Es balloon");
-                    balloon.TakeDamage(1); 
-                    if (balloon.IsDestroyed())
-                    {
-                        balloon.GetRewards();
-                        Debug.Log("Balloon destroyed");
-                    }
-                }
-
-                if (arrowType == "Arrow_Explosion")
-                {
-                    Explode(other.gameObject.transform.Find("balloon_up").transform.position);
-                }
-                
-            }
-            else if (other.gameObject.CompareTag("Floor"))
-            {
-                // Destroy the arrow when it hits the floor
-                failSound.Play();
-                Destroy(gameObject);
-                
-            }
-        }
-        else
-        {
-            Debug.Log("Arrow triggered with: " + other.gameObject.name);
-
-            if (other.gameObject.name == "balloon_up")
-            {
-                Balloon balloon = other.transform.parent.GetComponent<Balloon>();
-                if (balloon != null)
-                {
-                    balloon.TakeDamage(1);
-                    if (balloon.IsDestroyed())
-                    {
-                        balloon.GetRewards();
-                        Debug.Log("Balloon destroyed (trigger)");
-                        hasHit = true;
-                    }
+                    balloon.GetRewards();
+                    Debug.Log("Balloon destroyed");
                 }
             }
-            else if (other.CompareTag("Floor"))
+
+            if (arrowType == "Arrow_Explosion")
             {
-                // Destroy the arrow when it hits the floor
                 if (!hasHit)
                 {
-                    failSound.Play();
+                    Explode(other.gameObject.transform.position);
+                    hasHit = true;
                 }
                 Destroy(gameObject);
-               
+            }
+            else if (arrowType == "Arrow_Steel")
+            {
+                if (!hasHit)
+                {
+                    StartCoroutine("DestroyAfter20");
+                    hasHit = true;
+                }
+            }
+            else Destroy(gameObject);
+
+        }
+        else if (other.gameObject.CompareTag("Floor"))
+        {
+            // Destroy the arrow when it hits the floor
+            if (!hasHit)
+            {
+                failSound.Play();
+                StartCoroutine("DestroyAfter10");
+                hasHit = true;
             }
         }
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
 
-    // void OnCollisionEnter(Collision collision)
-    // {
-        
-    // }
+        // si el tag del ovjeto de la colision es
+        if (collision.gameObject.CompareTag("Floor"))
+        {
+            // Destroy the arrow when it hits the floor
+            if (!hasHit)
+            {
+                failSound.Play();
+                StartCoroutine("DestroyAfter10");
+                hasHit = true;
+            }
+
+        }
+    }
+
+    IEnumerator DestroyAfter10()
+    {
+        yield return new WaitForSeconds(10);
+        Destroy(gameObject);
+    }
+
+    IEnumerator DestroyAfter20()
+    {
+        yield return new WaitForSeconds(20);
+        Destroy(gameObject);
+    }
+
+    void OnDestroy()
+    {
+        GameManager.Instance.ArrowUp();
+        Debug.Log("Arrow destroyed");
+        // Aqui puedes agregar cualquier otro comportamiento que desees al destruir la flecha
+    }
+
+
 }

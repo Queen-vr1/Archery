@@ -20,6 +20,7 @@ public class Bow : MonoBehaviour
     public GameObject dominantController, notDominantController;
     public AudioSource bowSound;
     public float mult = 30f;
+    public RoundManager roundManager;
 
     // bowSound.Play(); endiende el sonido 
     // bowSound.Stop(); apaga el sonido
@@ -40,9 +41,9 @@ public class Bow : MonoBehaviour
         // Debug.Log ("distance to plane: " + DistanceToPlane(notDominantController.transform.position, Camera.main.transform.position, Camera.main.transform.forward));
         // Debug.Log ("angle: " + Vector3.Angle(Vector3.down, dominantController.transform.forward));
 
-        if (currentState == BowState.notArrow && OVRInput.GetDown(notDominant)
+        if (OVRInput.GetDown(notDominant) && currentState == BowState.notArrow/* && roundManager.timeRemaining > 0*/
             && DistanceToPlane(dominantController.transform.position, Camera.main.transform.position, Camera.main.transform.forward) < 0.1f
-            /*&& Vector3.Angle(Vector3.down, dominantController.transform.forward) < 60*/)
+            && GameManager.Instance.ArrowDown())
         {
             arrow = Instantiate(arrowModel, dominantController.transform.position, Quaternion.identity);
             arrow.transform.parent = dominantController.transform;
@@ -69,16 +70,51 @@ public class Bow : MonoBehaviour
             if (currentState == BowState.arrowReady)
             {
                 float distance = Vector3.Distance(dominantController.transform.position, notDominantController.transform.position);
-                rb.velocity = arrow.transform.forward * distance * mult;
+                rb.velocity = arrow.transform.forward * distance * (mult + GameManager.Instance.UpgradeState.Arrow_Speed);
+                arrow.GetComponentInChildren<Arrow>().StartCoroutine("DestroyAfter20");
+                arrow.transform.parent = null;
+                Debug.Log("Arrow shot");
             }
-            arrow.transform.parent = null;
+            else if (DistanceToPlane(dominantController.transform.position, Camera.main.transform.position, Camera.main.transform.forward) < 0.1f)
+            {
+                Destroy(arrow);
+                Debug.Log("Arrow returned");
+            }
+            else
+            {
+                arrow.transform.parent = null;
+                Debug.Log("Arrow fallen");
+            }
+            bowSound.Stop();
             arrow = null;
             InputDevices.GetDeviceAtXRNode(XRNode.LeftHand).SendHapticImpulse(0, 0, 1.0f);
             InputDevices.GetDeviceAtXRNode(XRNode.RightHand).SendHapticImpulse(0, 0, 1.0f);
-            Debug.Log("Arrow shot");
             currentState = BowState.notArrow;
         }
-
+        else if (OVRInput.Get(notDominant) && arrow == null && currentState == BowState.notArrow)
+        {
+            GameObject[] arrows = GameObject.FindGameObjectsWithTag("Arrow");
+            foreach (GameObject arr in arrows)
+            {
+                float distance = Vector3.Distance(dominantController.transform.position, arr.transform.position);
+                if (distance < 0.3f)
+                {
+                    Destroy(arr);
+                    GameManager.Instance.ArrowDownWithNoCheck();
+                    arrow = Instantiate(arrowModel, dominantController.transform.position, Quaternion.identity);
+                    arrow.transform.parent = dominantController.transform;
+                    // turn off the ribidbody so it doesnt interact
+                    rb = arrow.GetComponentInChildren<Rigidbody>();
+                    rb.isKinematic = true;
+                    rb.useGravity = false;
+                    rb.detectCollisions = false;
+                    arrow.transform.localPosition = new Vector3(0, 0, 0);
+                    arrow.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                    Debug.Log("Arrow recovered");
+                    currentState = BowState.arrowBack;
+                }
+            }
+        }
         else
         {
             float distance = Vector3.Distance(dominantController.transform.position, notDominantController.transform.position);
@@ -87,23 +123,44 @@ public class Bow : MonoBehaviour
                 case BowState.arrowBack:
                     arrow.transform.localRotation = Quaternion.Euler(0, 0, 0);
                     Vector3 direction = dominantController.transform.forward;
-                    if (direction.y > 0.3) {currentState = BowState.arrowAbove; Debug.Log("Arrow above");}
+                    if (direction.y > 0.3) { currentState = BowState.arrowAbove; Debug.Log("Arrow above"); }
                     break;
                 case BowState.arrowAbove:
                     arrow.transform.localRotation = Quaternion.Euler(0, 0, 0);
-                    if (distance < 0.2f) {currentState = BowState.arrowClose; Debug.Log("Arrow close");}
+                    if (distance < 0.3f) { currentState = BowState.arrowClose; Debug.Log("Arrow close"); }
                     break;
                 case BowState.arrowClose:
                     // arrow looks at the nondominant controller
                     arrow.transform.LookAt(notDominantController.transform.position);
-                    if (distance >= 0.4f) {currentState = BowState.arrowReady; Debug.Log("Arrow ready");}
+                    if (distance >= 0.3f)
+                    {
+                        bowSound.Play();
+                        currentState = BowState.arrowReady;
+                        Debug.Log("Arrow ready");
+                    }
                     break;
                 case BowState.arrowReady:
                     arrow.transform.LookAt(notDominantController.transform.position);
                     // controllers vibrate
-                    InputDevices.GetDeviceAtXRNode(XRNode.LeftHand).SendHapticImpulse(0, 0.5f, 1.0f);
-                    InputDevices.GetDeviceAtXRNode(XRNode.RightHand).SendHapticImpulse(0, 0.5f, 1.0f);
-                    if (distance < 0.4f) {currentState = BowState.arrowClose; Debug.Log("Arrow close again");}
+                    float vibration = 0.2f + (distance - 0.3f) * 1.6f;
+                    InputDevices.GetDeviceAtXRNode(XRNode.LeftHand).SendHapticImpulse(0, vibration, 1.0f);
+                    InputDevices.GetDeviceAtXRNode(XRNode.RightHand).SendHapticImpulse(0, vibration, 1.0f);
+                    if (distance < 0.3f)
+                    {
+                        bowSound.Stop();
+                        currentState = BowState.arrowClose;
+                        Debug.Log("Arrow close again");
+                        InputDevices.GetDeviceAtXRNode(XRNode.LeftHand).SendHapticImpulse(0, 0f, 1.0f);
+                        InputDevices.GetDeviceAtXRNode(XRNode.RightHand).SendHapticImpulse(0, 0f, 1.0f);
+                    }
+                    if (distance > 0.8f)
+                    {
+                        bowSound.Stop();
+                        currentState = BowState.arrowAbove;
+                        Debug.Log("Arrow back");
+                        InputDevices.GetDeviceAtXRNode(XRNode.LeftHand).SendHapticImpulse(0, 0f, 1.0f);
+                        InputDevices.GetDeviceAtXRNode(XRNode.RightHand).SendHapticImpulse(0, 0f, 1.0f);
+                    }
                     break;
             }
         }

@@ -4,6 +4,9 @@ using System.Collections.Generic;
 // Abstract base class for all balloon types.
 public abstract class Balloon : ObjectGameplay
 {
+    // Indicates if rewards have been collected for this balloon.
+    public bool rewardsCollected = false;
+
     // Indicates whether this balloon type is unlocked by the player.
     // public bool IsUnlocked { get; private set; } = false;
 
@@ -37,7 +40,10 @@ public abstract class Balloon : ObjectGameplay
 
     public virtual void GetRewards()
     {
+        if (rewardsCollected)
+            return;
         RewardManager.ApplyAll(rewards);
+        rewardsCollected = true;
     }
 
 
