@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour
 	private int lastArrowCount = -1;
 	private int lastTarget = -1;
 	private Color originalTimeColor;
+	private int elapsedTime = 0;
 
 	private float animationTime = 0.5f;
 	private float scale = 1.2f;
@@ -35,6 +36,7 @@ public class UIManager : MonoBehaviour
 			originalTimeColor = timeText.color;
 		}
 
+		/*
 		if (ChallengeManager.Instance != null && ChallengeManager.Instance.challengeActive)
 		{
 			ShowChallenge(ChallengeManager.Instance.GetChallengeName());
@@ -43,7 +45,7 @@ public class UIManager : MonoBehaviour
 		{
 			if (challengeText != null)
 				challengeText.gameObject.SetActive(false);
-		}
+		}*/
 	}
 
 	private void Update()
@@ -69,7 +71,7 @@ public class UIManager : MonoBehaviour
 			if (arrowCount != lastArrowCount)
 			{
 				arrowCounter.text = $"{arrowCount}";
-				AnimateText(arrowCounter);
+				//AnimateText(arrowCounter);
 				lastArrowCount = arrowCount;
 			}
 			
@@ -98,7 +100,25 @@ public class UIManager : MonoBehaviour
 				timeText.color = originalTimeColor;
 			}
 
-			
+			if (ChallengeManager.Instance != null && ChallengeManager.Instance.challengeActive)
+			{
+				if (challengeText != null)
+				{
+					challengeText.text = $"Challenge!\n{challengeName}";
+					challengeText.gameObject.SetActive(true);
+					elapsedTime += Time.deltaTime;
+					if (elapsedTime >= 10f)
+					{
+						challengeText.gameObject.SetActive(false);
+						elapsedTime = 0;
+					}
+				}
+			else
+			{
+				if (challengeText != null)
+					challengeText.gameObject.SetActive(false);
+			}
+
 			int target = RoundManagerInstance().GetTargetScore();
 			if (target != lastTarget)
 			{
